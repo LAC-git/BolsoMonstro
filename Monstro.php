@@ -27,6 +27,20 @@
 		private ?int		    	$pontos_mov	= null;
 		private ?int		  	  $exp		    = null;
 		private ?string		   	$golpes		  = null;
+
+		private function __construct(
+			private readonly bool $esta_vivo,
+			private readonly ?int $vida
+		)
+		{
+			if ( !$esta_vivo && $vida !== null) {
+				throw new \InvalidArgumentException("Dead cat cannot have health");
+			}
+		}
+		
+		public static function vivo(bool $esta_vivo): self {
+			return new self(true, 100);
+		}
 	}
 
 ?>
