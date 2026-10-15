@@ -2,25 +2,28 @@
 
 ## Visão geral
 
-Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do repositório e os requisitos das regras do trabalho.
+Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do repositório, que foi simplificada para um padrão MVC com pastas dedicadas por camada.
 
-## Estrutura base do projeto
+## Estrutura base atual do projeto
 
-- [ ] Criar/organizar a estrutura de pastas do repositório
-  - [ ] `api/`
+- [ ] Manter a estrutura principal do repositório
+  - [ ] `App/`
+  - [ ] `App/Controllers/`
+  - [ ] `App/Models/`
+  - [ ] `App/Views/`
+  - [ ] `App/Views/js/`
+  - [ ] `config/`
   - [ ] `database/`
-  - [ ] `www/`
-  - [ ] `www/js/`
 - [ ] Garantir que o arquivo `LICENSE` esteja presente
 - [ ] Garantir que `README.md` e `TAREFAS.md` estejam atualizados
 
 ## 1. Configuração inicial
 
-- [ ] Definir estrutura MVC do projeto
+- [ ] Definir a estrutura MVC do projeto
 - [x] Criar autoload das classes
 - [ ] Configurar conexão com banco via PDO
 - [ ] Definir constantes de ambiente e configurações iniciais
-- [ ] Preparar base de rotas e arquivos do front-end
+- [ ] Preparar a base de arquivos e pontos de entrada da aplicação
 
 ## 2. Banco de dados e SQL
 
@@ -42,7 +45,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 ## 3. Entidades e regras de negócio
 
-### `api/Monstro.php`
+### `App/Models/Monstro.php`
 
 - [ ] Definir classe `Monstro`
 - [ ] Criar atributos mínimos: nome, HP/vida, velocidade
@@ -59,11 +62,11 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 - [ ] Implementar pelo menos 3 exceções
 - [ ] Garantir encapsulamento com getters e setters apropriados
 - [ ] Usar polimorfismo em métodos relevantes
-- [ ] Definir overloading/assinaturas padronizadas conforme a linguagem
+- [ ] Definir assinatura de métodos e comportamento padronizado
 
 ## 4. Sistema de Login e Usuário
 
-- [ ] Criar tela de login
+- [ ] Criar tela de login em `App/Views/login.php`
 - [ ] Criar cadastro de usuário
 - [ ] Criar sistema de autenticação
 - [ ] Implementar troca de perfil
@@ -72,7 +75,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 ## 5. Team Builder
 
-### `www/team-builder.php`
+### `App/Views/team-builder.php`
 
 - [ ] Criar interface de montagem do time
 - [ ] Permitir seleção de monstros
@@ -83,7 +86,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 ## 6. Lojinha
 
-- [ ] Criar tela da loja
+- [ ] Criar tela da loja na camada de views
 - [ ] Definir itens básicos obrigatórios
   - [ ] Potion
   - [ ] Super Potion
@@ -104,7 +107,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 ## 7. Sistema de Batalha
 
-- [ ] Criar lógica de turno
+- [ ] Criar lógica de turno em `App/Controllers/Batalha.php`
 - [ ] Definir ataques e cálculo de dano
 - [ ] Implementar vida (HP), velocidade e defesa
 - [ ] Aplicar verificações de status
@@ -114,27 +117,9 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 - [ ] Adicionar histórico de batalhas
 - [ ] Permitir que vitórias gerem dinheiro
 
-## 8. Log de batalhas e gestão de dados
+## 8. Interface web e JavaScript
 
-- [ ] Criar tabela de log de batalhas
-- [ ] Registrar eventos da batalha
-- [ ] Armazenar vencedor, perdedor, dano, status e timestamps
-- [ ] Criar view para relatórios de batalha
-- [ ] Criar view para dashboard do jogador
-- [ ] Criar view para histórico da loja
-
-## 9. API e requisições assíncronas
-
-- [ ] Criar endpoints para monstros
-- [ ] Criar endpoints para loja
-- [ ] Criar endpoints para batalha
-- [ ] Consumir dados em JSON
-- [ ] Implementar fetch/AJAX no front-end
-- [ ] Tratar erros HTTP e mensagens de retorno
-
-## 10. Interface web e JavaScript
-
-### `www/js/`
+### `App/Views/js/`
 
 - [ ] Criar scripts para login
 - [ ] Criar scripts para time builder
@@ -144,7 +129,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 - [ ] Melhorar interação com o usuário
 - [ ] Aplicar validações front-end
 
-## 11. Validação e correção
+## 9. Validação e correção
 
 - [ ] Testar cadastro e login
 - [ ] Testar montagem de time
@@ -156,7 +141,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 - [ ] Validar exceções e mensagens
 - [ ] Revisar nomes de classes, arquivos e organização
 
-## 12. Entrega final
+## 10. Entrega final
 
 - [ ] Revisar README.md
 - [ ] Revisar TAREFAS.md
@@ -180,3 +165,5 @@ O projeto estará concluído quando:
 ---
 
 ## Observações
+
+Esta checklist foi ajustada para refletir a estrutura atual do repositório, com o foco em `App/`, `config/` e `database/`, sem manter referências antigas a `api/` e `www/`.
