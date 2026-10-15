@@ -102,6 +102,19 @@ final class Monstro implements JsonSerializable {
         throw new BadMethodCallException('Não implementado ainda.');
     }
 
+    public function get_id(): ?int              { return $this->id; }
+    public function get_nome(): string          { return $this->nome; }
+    public function get_vida_atual(): int       { return $this->vida_atual; }
+    public function get_vida_maxima(): int      { return $this->vida_maxima; }
+    public function get_velocidade(): int       { return $this->velocidade; }
+    public function get_defesa(): int           { return $this->defesa; }
+    public function get_ataque(): int           { return $this->ataque; }
+    public function get_nivel(): int            { return $this->nivel; }
+    public function get_pontos_mov(): int       { return $this->pontos_mov; }
+    public function get_exp(): int              { return $this->exp; }
+    public function get_golpes(): ?string       { return $this->golpes; }
+    public function get_estado(): MonstroEstado { return $this->estado; }
+
     public function jsonSerialize(): array {
         return [
             'id'               => $this->id,
@@ -119,19 +132,6 @@ final class Monstro implements JsonSerializable {
             'golpes'           => $this->golpes,
         ];
     }
-
-    public function get_id(): ?int              { return $this->id; }
-    public function get_nome(): string          { return $this->nome; }
-    public function get_vida_atual(): int       { return $this->vida_atual; }
-    public function get_vida_maxima(): int      { return $this->vida_maxima; }
-    public function get_velocidade(): int       { return $this->velocidade; }
-    public function get_defesa(): int           { return $this->defesa; }
-    public function get_ataque(): int           { return $this->ataque; }
-    public function get_nivel(): int            { return $this->nivel; }
-    public function get_pontos_mov(): int       { return $this->pontos_mov; }
-    public function get_exp(): int              { return $this->exp; }
-    public function get_golpes(): ?string       { return $this->golpes; }
-    public function get_estado(): MonstroEstado { return $this->estado; }
 }
 
 ?>
