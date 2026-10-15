@@ -4,18 +4,20 @@
 
 Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do repositório, que foi simplificada para um padrão MVC com pastas dedicadas por camada.
 
+As marcações refletem o código atualmente implementado. Arquivos vazios contam como pendentes; itens parcialmente implementados permanecem desmarcados com uma observação.
+
 ## Estrutura base atual do projeto
 
 - [ ] Manter a estrutura principal do repositório
-  - [ ] `App/`
-  - [ ] `App/Controllers/`
-  - [ ] `App/Models/`
-  - [ ] `App/Views/`
+  - [x] `App/`
+  - [x] `App/Controllers/`
+  - [x] `App/Models/`
+  - [x] `App/Views/`
   - [ ] `App/Views/js/`
-  - [ ] `config/`
-  - [ ] `database/`
-- [ ] Garantir que o arquivo `LICENSE` esteja presente
-- [ ] Garantir que `README.md` e `TAREFAS.md` estejam atualizados
+  - [x] `config/`
+  - [x] `database/`
+- [x] Garantir que o arquivo `LICENSE` esteja presente
+- [ ] Garantir que `README.md` e `TAREFAS.md` estejam atualizados (TAREFAS revisado; README ainda descreve a estrutura antiga)
 
 ## 1. Configuração inicial
 
@@ -50,23 +52,23 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 - [x] Definir classe `Monstro`
 - [x] Criar atributos mínimos: nome, HP/vida, velocidade
 - [ ] Implementar atributos adicionais conforme regras:
-  - [ ] ataque
-  - [ ] defesa
-  - [ ] nível
-  - [ ] experiência
-  - [ ] status
-  - [ ] tipo
-- [ ] Implementar trait para tipos
-- [ ] Criar validadores de dados
-- [ ] Implementar exceções personalizadas
+  - [x] ataque
+  - [x] defesa
+  - [x] nível
+  - [x] experiência
+  - [ ] status (enum e atributo existem; alteração e regras de status ainda não estão implementadas)
+  - [ ] tipo (trait e valor padrão existem; não é possível definir o tipo ao criar o monstro)
+- [x] Implementar trait para tipos
+- [x] Criar validadores de dados
+- [x] Implementar exceções personalizadas
 - [ ] Implementar pelo menos 3 exceções
-- [ ] Garantir encapsulamento com getters e setters apropriados
-- [ ] Usar polimorfismo em métodos relevantes
+- [x] Garantir encapsulamento com getters e operações de domínio
+- [x] Usar polimorfismo em métodos relevantes (`JsonSerializable`)
 - [ ] Definir assinatura de métodos e comportamento padronizado
 
 ## 4. Sistema de Login e Usuário
 
-- [ ] Criar tela de login em `App/Views/login.php`
+- [ ] Criar tela de login em `App/Views/inicio/login.php`
 - [ ] Criar cadastro de usuário
 - [ ] Criar sistema de autenticação
 - [ ] Implementar troca de perfil
@@ -75,7 +77,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 ## 5. Team Builder
 
-### `App/Views/team-builder.php`
+### `App/Views/jogo/team-builder.php`
 
 - [ ] Criar interface de montagem do time
 - [ ] Permitir seleção de monstros
@@ -88,11 +90,11 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 - [ ] Criar tela da loja na camada de views
 - [ ] Definir itens básicos obrigatórios
-  - [ ] Potion
-  - [ ] Super Potion
-  - [ ] Hyper Potion
-  - [ ] Max Potion
-  - [ ] Full Restore
+  - [x] Potion
+  - [x] Super Potion
+  - [x] Hyper Potion
+  - [x] Max Potion
+  - [x] Full Restore
   - [ ] Antidote
   - [ ] Burn Heal
   - [ ] Ice Heal
@@ -100,10 +102,10 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
   - [ ] Paralyze Heal
   - [ ] Full Heal
   - [ ] Revive
-- [ ] Implementar regras de cura de vida e status
+- [ ] Implementar regras de cura de vida e status (cura de HP e Full Restore existem; itens de cura de status ainda não)
 - [ ] Implementar evolução por compra de item
-- [ ] Validar saldo do usuário antes da compra
-- [ ] Atualizar inventário do usuário
+- [x] Validar saldo informado antes da compra
+- [ ] Atualizar inventário persistente do usuário (a compra retorna o inventário atualizado em memória; não há integração com usuário ou banco)
 
 ## 7. Sistema de Batalha
 
@@ -111,7 +113,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 - [ ] Definir ataques e cálculo de dano
 - [ ] Implementar vida (HP), velocidade e defesa
 - [ ] Aplicar verificações de status
-- [ ] Implementar condição de desmaio
+- [x] Implementar condição de desmaio
 - [ ] Implementar reviver com metade da vida
 - [ ] Registrar log da batalha em banco
 - [ ] Adicionar histórico de batalhas
