@@ -19,7 +19,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 ## 1. Configuração inicial
 
-- [ ] Definir a estrutura MVC do projeto
+- [x] Definir a estrutura MVC do projeto
 - [x] Criar autoload das classes
 - [ ] Configurar conexão com banco via PDO
 - [ ] Definir constantes de ambiente e configurações iniciais
@@ -47,8 +47,8 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 
 ### `App/Models/Monstro.php`
 
-- [ ] Definir classe `Monstro`
-- [ ] Criar atributos mínimos: nome, HP/vida, velocidade
+- [x] Definir classe `Monstro`
+- [x] Criar atributos mínimos: nome, HP/vida, velocidade
 - [ ] Implementar atributos adicionais conforme regras:
   - [ ] ataque
   - [ ] defesa
