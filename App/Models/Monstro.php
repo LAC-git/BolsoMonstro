@@ -75,7 +75,17 @@ final class Monstro implements JsonSerializable {
     }
 
     public function aplicar_cura(ItemCura $tipo_cura): void {
-        if ($this->esta_desmaiado() && $tipo_cura !== ItemCura::FullRestore) {
+        if ($tipo_cura === ItemCura::Revive) {
+            if (!$this->esta_desmaiado()) {
+                return;
+            }
+
+            $this->vida_atual = max(1, intdiv($this->vida_maxima, 2));
+            $this->mudar_estado(MonstroEstado::Normal);
+            return;
+        }
+
+        if ($this->esta_desmaiado()) {
             return;
         }
 
@@ -85,12 +95,26 @@ final class Monstro implements JsonSerializable {
             ItemCura::HyperPotion => 200,
             ItemCura::MaxPotion,
             ItemCura::FullRestore => $this->vida_maxima,
+            default               => 0,
         };
 
-        $this->vida_atual = min($this->vida_maxima, $this->vida_atual + $cura);
+        if ($cura > 0) {
+            $this->vida_atual = min($this->vida_maxima, $this->vida_atual + $cura);
+        }
 
-        if ($tipo_cura === ItemCura::FullRestore) {
-            $this->estado = MonstroEstado::Normal;
+        $estado_curado = match ($tipo_cura) {
+            ItemCura::Antidote     => MonstroEstado::Envenenamento,
+            ItemCura::BurnHeal     => MonstroEstado::Queimadura,
+            ItemCura::IceHeal      => MonstroEstado::Congelamento,
+            ItemCura::Awakening    => MonstroEstado::Sono,
+            ItemCura::ParalyzeHeal => MonstroEstado::Paralisia,
+            ItemCura::FullHeal,
+            ItemCura::FullRestore  => MonstroEstado::Normal,
+            default                => null,
+        };
+
+        if ($estado_curado === MonstroEstado::Normal || $this->estado === $estado_curado) {
+            $this->mudar_estado(MonstroEstado::Normal);
         }
     }
 
@@ -120,8 +144,8 @@ final class Monstro implements JsonSerializable {
     }
 
     
-    public function mudar_estado(): void {
-        throw new BadMethodCallException('Não implementado ainda.');
+    public function mudar_estado(MonstroEstado $novo_estado): void {
+        $this->estado = $novo_estado;
     }
 
     public function get_id(): ?int              { return $this->id; }

@@ -56,12 +56,12 @@ As marcações refletem o código atualmente implementado. Arquivos vazios conta
   - [x] defesa
   - [x] nível
   - [x] experiência
-  - [ ] status (enum e atributo existem; alteração e regras de status ainda não estão implementadas)
+  - [x] status (enum, atributo e método de alteração implementados)
   - [ ] tipo (trait e valor padrão existem; não é possível definir o tipo ao criar o monstro)
 - [x] Implementar trait para tipos
 - [x] Criar validadores de dados
 - [x] Implementar exceções personalizadas
-- [ ] Implementar pelo menos 3 exceções
+- [x] Implementar pelo menos 3 exceções
 - [x] Garantir encapsulamento com getters e operações de domínio
 - [x] Usar polimorfismo em métodos relevantes (`JsonSerializable`)
 - [ ] Definir assinatura de métodos e comportamento padronizado
@@ -95,14 +95,14 @@ As marcações refletem o código atualmente implementado. Arquivos vazios conta
   - [x] Hyper Potion
   - [x] Max Potion
   - [x] Full Restore
-  - [ ] Antidote
-  - [ ] Burn Heal
-  - [ ] Ice Heal
-  - [ ] Awakening
-  - [ ] Paralyze Heal
-  - [ ] Full Heal
-  - [ ] Revive
-- [ ] Implementar regras de cura de vida e status (cura de HP e Full Restore existem; itens de cura de status ainda não)
+  - [x] Antidote
+  - [x] Burn Heal
+  - [x] Ice Heal
+  - [x] Awakening
+  - [x] Paralyze Heal
+  - [x] Full Heal
+  - [x] Revive
+- [x] Implementar regras de cura de vida e status
 - [ ] Implementar evolução por compra de item
 - [x] Validar saldo informado antes da compra
 - [ ] Atualizar inventário persistente do usuário (a compra retorna o inventário atualizado em memória; não há integração com usuário ou banco)
@@ -114,7 +114,7 @@ As marcações refletem o código atualmente implementado. Arquivos vazios conta
 - [ ] Implementar vida (HP), velocidade e defesa
 - [ ] Aplicar verificações de status
 - [x] Implementar condição de desmaio
-- [ ] Implementar reviver com metade da vida
+- [x] Implementar reviver com metade da vida
 - [ ] Registrar log da batalha em banco
 - [ ] Adicionar histórico de batalhas
 - [ ] Permitir que vitórias gerem dinheiro

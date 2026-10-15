@@ -7,6 +7,13 @@ final class Loja {
 		'HyperPotion' => 1200,
 		'MaxPotion'   => 2500,
 		'FullRestore' => 3000,
+		'Antidote'    => 200,
+		'BurnHeal'    => 250,
+		'IceHeal'     => 250,
+		'Awakening'   => 250,
+		'ParalyzeHeal'=> 250,
+		'FullHeal'    => 600,
+		'Revive'      => 1500,
 	];
 
 	public function get_precos(): array {
