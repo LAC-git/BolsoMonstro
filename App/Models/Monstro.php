@@ -94,10 +94,32 @@ final class Monstro implements JsonSerializable {
         }
     }
 
-    public function reviver(): void {
-        throw new BadMethodCallException('Não implementado ainda.');
+    public function tomar_dano(int $dano): void {
+        if ($dano < 0) { throw new InvalidArgumentException('O dano não pode ser negativo.'); }
+        
+        $dano = max(0, $dano - $this->defesa);
+        $this->vida_atual = max(0, $this->vida_atual - $dano);
     }
 
+    public function upar_exp(int $valor_batalha): void {
+        if ($valor_batalha < 0) { throw new InvalidArgumentException('O valor de experiência não pode ser negativo.'); }
+        $this->exp += $valor_batalha;
+    }
+
+    public function upar_nivel(): void {
+        if ($this->exp < 100) {
+            throw new BadMethodCallException('Não é possível upar de nível sem experiência suficiente.');
+        }
+        $this->nivel += 1;
+        $this->vida_maxima += 10;
+        $this->vida_atual = $this->vida_maxima;
+        $this->velocidade += 1;
+        $this->defesa += 2;
+        $this->ataque += 2;
+        $this->exp = 0; // Resetar a experiência após upar de nível
+    }
+
+    
     public function mudar_estado(): void {
         throw new BadMethodCallException('Não implementado ainda.');
     }
