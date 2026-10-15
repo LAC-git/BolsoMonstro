@@ -71,11 +71,27 @@ final class Monstro implements JsonSerializable {
     }
 
     public function esta_desmaiado(): bool {
-        throw new BadMethodCallException('Não implementado ainda.');
+        return $this->vida_atual <= 0;
     }
 
-    public function aplicar_cura(int $quantidade): void {
-        throw new BadMethodCallException('Não implementado ainda.');
+    public function aplicar_cura(ItemCura $tipo_cura): void {
+        if ($this->esta_desmaiado() && $tipo_cura !== ItemCura::FullRestore) {
+            return;
+        }
+
+        $cura = match ($tipo_cura) {
+            ItemCura::Potion      => 20,
+            ItemCura::SuperPotion => 50,
+            ItemCura::HyperPotion => 200,
+            ItemCura::MaxPotion,
+            ItemCura::FullRestore => $this->vida_maxima,
+        };
+
+        $this->vida_atual = min($this->vida_maxima, $this->vida_atual + $cura);
+
+        if ($tipo_cura === ItemCura::FullRestore) {
+            $this->estado = MonstroEstado::Normal;
+        }
     }
 
     public function reviver(): void {
