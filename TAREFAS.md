@@ -17,7 +17,7 @@ Este arquivo organiza o desenvolvimento do projeto conforme a estrutura atual do
 ## 1. Configuração inicial
 
 - [ ] Definir estrutura MVC do projeto
-- [OK] Criar autoload das classes
+- [x] Criar autoload das classes
 - [ ] Configurar conexão com banco via PDO
 - [ ] Definir constantes de ambiente e configurações iniciais
 - [ ] Preparar base de rotas e arquivos do front-end
