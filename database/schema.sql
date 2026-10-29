@@ -1,15 +1,14 @@
 -- =========================================================
--- BolsoMonstro - Schema inicial do banco de dados
+-- BolsoMonstro - Schema inicial d
 -- =========================================================
--- MySQL / MariaDB
--- =========================================================
+create database if not exists bolso_monstro;
+use bolso_monstro;
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     senha_hash VARCHAR(255) NOT NULL,
-    saldo_pokedollars INT NOT NULL DEFAULT 0,
     data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     ultimo_login TIMESTAMP NULL DEFAULT NULL,
     ativo TINYINT(1) NOT NULL DEFAULT 1
@@ -19,14 +18,6 @@ CREATE TABLE IF NOT EXISTS jogadores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
     nome VARCHAR(100) NOT NULL,
-    nivel INT NOT NULL DEFAULT 1,
-    experiencia INT NOT NULL DEFAULT 0,
-    vida_maxima INT NOT NULL DEFAULT 100,
-    vida_atual INT NOT NULL DEFAULT 100,
-    velocidade INT NOT NULL DEFAULT 2,
-    defesa INT NOT NULL DEFAULT 10,
-    ataque INT NOT NULL DEFAULT 10,
-    pontos_movimento INT NOT NULL DEFAULT 1,
     saldo_pokedollars INT NOT NULL DEFAULT 0,
     criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     atualizado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -182,7 +173,7 @@ INNER JOIN usuarios u ON u.id = j.usuario_id;
 
 CREATE OR REPLACE VIEW vw_inventario_jogador AS
 SELECT
-    i.id,
+    inv.id,
     j.id AS jogador_id,
     j.nome AS jogador,
     it.nome AS item,
