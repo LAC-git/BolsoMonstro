@@ -13,21 +13,10 @@ enum MonstroEstado: string implements JsonSerializable {
     public function jsonSerialize(): string { return $this->value; }
 }
 
-trait MonstroTipo {
-    private string $tipo = 'Normal';
+abstract class Monstro implements JsonSerializable {
+    protected MonstroEstado $estado = MonstroEstado::Normal;
 
-    public function get_tipo(): string { return $this->tipo; }
-    public function set_tipo(string $tipo): void {
-        throw new BadMethodCallException('Tipo do monstro não deve ser modificado.');
-    }
-}
-
-final class Monstro implements JsonSerializable {
-    use MonstroTipo;
-
-    private MonstroEstado $estado = MonstroEstado::Normal;
-
-    private function __construct(
+    protected function __construct(
         private ?int    $id,
         private string  $nome,
         private int     $vida_atual,
@@ -53,7 +42,11 @@ final class Monstro implements JsonSerializable {
         ?string $golpes      = null,
         ?int    $id          = null,
         ?int    $vida_atual  = null
-    ): self {
+    ): static {
+        if (static::class === Monstro::class) {
+            throw new MonstroInvalidoException('Monstro sem tipo não pode ser criado.');
+        }
+
         $nome = trim($nome);
         $vida_atual = $vida_atual ?? $vida_maxima;
 
@@ -67,7 +60,29 @@ final class Monstro implements JsonSerializable {
         if ($pontos_mov < 0)    { throw new MonstroInvalidoException('Os pontos de movimento não podem ser negativos.'); }
         if ($exp < 0)           { throw new MonstroInvalidoException('A experiência não pode ser negativa.'); }
 
-        return new self($id, $nome, $vida_atual, $vida_maxima, $velocidade, $defesa, $ataque, $nivel, $pontos_mov, $exp, $golpes);
+        return new static($id, $nome, $vida_atual, $vida_maxima, $velocidade, $defesa, $ataque, $nivel, $pontos_mov, $exp, $golpes);
+    }
+
+    public function get_tipo(): string {
+        // A hierarquia define o tipo pela classe concreta: MonstroVeneno => Veneno.
+        // Se a instância for da classe base Monstro, ela ainda não representa um tipo
+        // específico e não deve existir em produção. Em caso de classe inválida, o
+        // código lança uma exceção para deixar explícita a inconsistência.
+        $nomeClasse = static::class;
+
+        if ($nomeClasse === self::class) {
+            throw new BadMethodCallException('Tipo do monstro não existe para a classe base Monstro.');
+        }
+
+        if (!preg_match('/^Monstro(.+)$/', $nomeClasse, $matches)) {
+            throw new BadMethodCallException("Tipo do monstro inválido para a classe '{$nomeClasse}'.");
+        }
+
+        return $matches[1];
+    }
+
+    public function set_tipo(string $tipo): void {
+        throw new BadMethodCallException('Tipo do monstro não deve ser modificado.');
     }
 
     public function esta_desmaiado(): bool {
