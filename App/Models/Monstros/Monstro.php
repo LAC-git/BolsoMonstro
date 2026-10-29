@@ -1,7 +1,13 @@
 <?php
 
-class MonstroInvalidoException extends InvalidArgumentException {}
+namespace App\Models\Monstros;
 
+use App\Models\ItemCura;
+use BadMethodCallException;
+use InvalidArgumentException;
+use JsonSerializable;
+
+class MonstroInvalidoException extends InvalidArgumentException {}
 enum MonstroEstado: string implements JsonSerializable {
     case Normal        = 'Normal';
     case Envenenamento = 'Envenenamento';
@@ -16,34 +22,32 @@ enum MonstroEstado: string implements JsonSerializable {
 abstract class Monstro implements JsonSerializable {
     protected MonstroEstado $estado = MonstroEstado::Normal;
 
-    protected function __construct(
-        private ?int    $id,
-        private string  $nome,
-        private int     $vida_atual,
-        private int     $vida_maxima,
-        private int     $velocidade,
-        private int     $defesa,
-        private int     $ataque,
-        private int     $nivel,
-        private int     $pontos_mov,
-        private int     $exp,
-        private ?string $golpes,
-    ) {}
+    protected ?int $id;
+    protected string $nome;
+    protected int $vida_atual;
+    protected int $vida_maxima;
+    protected int $velocidade;
+    protected int $defesa;
+    protected int $ataque;
+    protected int $nivel;
+    protected int $pontos_mov;
+    protected int $exp;
+    protected ?string $golpes;
 
-    public static function criar(
-        string  $nome,
-        int     $vida_maxima = 100,
-        int     $velocidade  = 2,
-        int     $defesa      = 10,
-        int     $ataque      = 10,
-        int     $nivel       = 1,
-        int     $pontos_mov  = 1,
-        int     $exp         = 0,
-        ?string $golpes      = null,
-        ?int    $id          = null,
-        ?int    $vida_atual  = null
-    ): static {
-        if (static::class === Monstro::class) {
+    public function __construct(
+        string $nome,
+        int $vida_maxima = 100,
+        int $velocidade = 2,
+        int $defesa = 10,
+        int $ataque = 10,
+        int $nivel = 1,
+        int $pontos_mov = 1,
+        int $exp = 0,
+        ?string $golpes = null,
+        ?int $id = null,
+        ?int $vida_atual = null,
+    ) {
+        if (static::class === self::class) {
             throw new MonstroInvalidoException('Monstro sem tipo não pode ser criado.');
         }
 
@@ -60,14 +64,20 @@ abstract class Monstro implements JsonSerializable {
         if ($pontos_mov < 0)    { throw new MonstroInvalidoException('Os pontos de movimento não podem ser negativos.'); }
         if ($exp < 0)           { throw new MonstroInvalidoException('A experiência não pode ser negativa.'); }
 
-        return new static($id, $nome, $vida_atual, $vida_maxima, $velocidade, $defesa, $ataque, $nivel, $pontos_mov, $exp, $golpes);
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->vida_atual = $vida_atual;
+        $this->vida_maxima = $vida_maxima;
+        $this->velocidade = $velocidade;
+        $this->defesa = $defesa;
+        $this->ataque = $ataque;
+        $this->nivel = $nivel;
+        $this->pontos_mov = $pontos_mov;
+        $this->exp = $exp;
+        $this->golpes = $golpes;
     }
 
     public function get_tipo(): string {
-        // A hierarquia define o tipo pela classe concreta: MonstroVeneno => Veneno.
-        // Se a instância for da classe base Monstro, ela ainda não representa um tipo
-        // específico e não deve existir em produção. Em caso de classe inválida, o
-        // código lança uma exceção para deixar explícita a inconsistência.
         $nomeClasse = static::class;
 
         if ($nomeClasse === self::class) {
@@ -135,7 +145,7 @@ abstract class Monstro implements JsonSerializable {
 
     public function tomar_dano(int $dano): void {
         if ($dano < 0) { throw new InvalidArgumentException('O dano não pode ser negativo.'); }
-        
+
         $dano = max(0, $dano - $this->defesa);
         $this->vida_atual = max(0, $this->vida_atual - $dano);
     }
@@ -155,10 +165,9 @@ abstract class Monstro implements JsonSerializable {
         $this->velocidade += 1;
         $this->defesa += 2;
         $this->ataque += 2;
-        $this->exp = 0; // Resetar a experiência após upar de nível
+        $this->exp = 0;
     }
 
-    
     public function mudar_estado(MonstroEstado $novo_estado): void {
         $this->estado = $novo_estado;
     }
@@ -194,5 +203,3 @@ abstract class Monstro implements JsonSerializable {
         ];
     }
 }
-
-?>

@@ -1,6 +1,8 @@
 <?php
 
-enum ItemCura: string implements JsonSerializable {
+namespace App\Models;
+
+enum ItemCura: string implements \JsonSerializable {
     case Potion         = 'Potion';         // +20 hp
     case SuperPotion    = 'SuperPotion';    // +50 hp
     case HyperPotion    = 'HyperPotion';    // +200 hp
@@ -16,5 +18,3 @@ enum ItemCura: string implements JsonSerializable {
 
     public function jsonSerialize(): string { return $this->value; }
 }
-
-?>
