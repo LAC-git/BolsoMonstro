@@ -1,8 +1,5 @@
-<?php
+﻿<?php
 
-namespace App\Models\Monstros;
-
-use App\Models\ItemCura;
 use BadMethodCallException;
 use InvalidArgumentException;
 use JsonSerializable;
