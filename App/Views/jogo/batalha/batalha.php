@@ -6,19 +6,20 @@
     <title>BolsoMonstro | Batalha</title>
     <style>
         :root {
-            --bg: #f7f1e7;
-            --painel: #fffdfb;
-            --painel-suave: #f4efe7;
-            --primario: #d97706;
-            --primario-suave: #f9e7c9;
-            --secundario: #2563eb;
-            --texto: #1f2937;
-            --mutado: #586e75;
-            --borda: #e5dcc8;
-            --vermelho: #b91c1c;
-            --vermelho-suave: #ffe5e5;
-            --verde: #0f766e;
-            --verde-suave: #d9f4ee;
+            --bg: #f4efe7;
+            --panel: #ffffff;
+            --panel-soft: #f8f4ef;
+            --line: #e8e0d1;
+            --text: #1f2937;
+            --muted: #5f6b76;
+            --primary: #c87f1d;
+            --primary-soft: #fbf0dc;
+            --secondary: #2d5dba;
+            --secondary-soft: #ebf1ff;
+            --success: #1d7a6b;
+            --success-soft: #eafaf5;
+            --danger: #b42318;
+            --danger-soft: #fdeaea;
         }
 
         * { box-sizing: border-box; }
@@ -26,177 +27,185 @@
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #fdf6e3 0%, #f8f3ea 50%, #f2efe9 100%);
-            color: var(--texto);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 32px 18px;
         }
 
         .arena {
             width: min(960px, 100%);
-            background: var(--painel);
-            border: 1px solid var(--borda);
-            border-radius: 24px;
-            box-shadow: 0 18px 35px rgba(88, 110, 117, 0.08);
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(31, 41, 55, 0.05);
             overflow: hidden;
         }
 
-        .topo {
-            background: linear-gradient(135deg, rgba(249, 231, 201, 0.8), rgba(223, 233, 255, 0.85));
-            padding: 24px 28px;
+        .topbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            border-bottom: 1px solid var(--borda);
+            padding: 22px 24px;
+            background: var(--panel-soft);
+            border-bottom: 1px solid var(--line);
         }
 
-        .topo h1 {
+        h1 {
             margin: 0;
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
         }
 
-        .topo a {
+        .nav-link,
+        .button,
+        .secondary-button,
+        .danger-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border-radius: 10px;
             text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.65);
-            border: 1px solid rgba(37,99,235,0.12);
-            color: var(--secundario);
             font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
         }
 
-        .conteudo {
+        .nav-link {
+            background: var(--secondary-soft);
+            border: 1px solid #dbe7ff;
+            color: var(--secondary);
+        }
+
+        .battle-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            padding: 24px 28px 28px;
+            gap: 18px;
+            padding: 22px 24px 24px;
         }
 
         .card {
-            background: var(--painel-suave);
-            border: 1px solid var(--borda);
-            border-radius: 20px;
-            padding: 20px;
+            background: var(--panel-soft);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
         }
 
         .card h2 {
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 1.25rem;
+            margin: 0 0 12px;
+            font-size: 1.2rem;
+        }
+
+        .card strong {
+            display: block;
+            margin-bottom: 16px;
         }
 
         .status {
             display: grid;
-            gap: 10px;
-            margin-top: 12px;
+            gap: 8px;
         }
 
-        .barra {
-            height: 14px;
+        .bar {
+            height: 12px;
+            background: #e7dfd4;
             border-radius: 999px;
-            background: #e7dfd0;
             overflow: hidden;
         }
 
-        .barra > span {
+        .bar > span {
             display: block;
             height: 100%;
-            background: linear-gradient(90deg, #22c55e, #f59e0b);
             border-radius: inherit;
+            background: linear-gradient(90deg, #3bb273, #f3b11a);
         }
 
-        .log {
+        .card.full {
+            grid-column: 1 / -1;
+        }
+
+        ul {
             list-style: none;
-            margin: 0;
+            margin: 0 0 18px;
             padding: 0;
-            display: grid;
-            gap: 10px;
-            color: var(--mutado);
+            color: var(--muted);
+            line-height: 1.7;
         }
 
-        .acoes {
+        .actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 18px;
+            gap: 10px;
         }
 
-        button, .link {
-            border: none;
-            border-radius: 12px;
-            padding: 12px 16px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
+        .button {
+            background: var(--primary-soft);
+            border: 1px solid #f1ddbb;
+            color: var(--primary);
         }
 
-        .ataque {
-            background: var(--vermelho-suave);
-            color: var(--vermelho);
+        .secondary-button {
+            background: var(--success-soft);
+            border: 1px solid #d5efe9;
+            color: var(--success);
         }
 
-        .defesa {
-            background: var(--verde-suave);
-            color: var(--verde);
-        }
-
-        .link {
-            background: var(--primario-suave);
-            color: var(--primario);
+        .danger-button {
+            background: var(--danger-soft);
+            border: 1px solid #f7d1cf;
+            color: var(--danger);
         }
     </style>
 </head>
 <body>
-    <div class="arena">
-        <div class="topo">
+    <main class="arena">
+        <div class="topbar">
             <h1>Batalha</h1>
-            <a href="../principal.php">Voltar para principal</a>
+            <a class="nav-link" href="../principal.php">Voltar ao menu</a>
         </div>
 
-        <div class="conteudo">
+        <div class="battle-grid">
             <section class="card">
-                <h2>Time do jogador</h2>
-                <strong>Time Solar</strong>
+                <h2>Equipe do jogador</h2>
+                <strong>Time 1</strong>
                 <div class="status">
-                    <div><span>Vida</span></div>
-                    <div class="barra"><span style="width: 82%;"></span></div>
-                    <div><span>Energia</span></div>
-                    <div class="barra"><span style="width: 68%; background: linear-gradient(90deg, #3b82f6, #60a5fa);"></span></div>
+                    <span>Vida</span>
+                    <div class="bar"><span style="width: 80%;"></span></div>
+                    <span>Energia</span>
+                    <div class="bar"><span style="width: 70%; background: linear-gradient(90deg, #3b82f6, #60a5fa);"></span></div>
                 </div>
             </section>
 
             <section class="card">
-                <h2>Inimigo</h2>
-                <strong>Fera do Deserto</strong>
+                <h2>Oponente</h2>
+                <strong>Time 2</strong>
                 <div class="status">
-                    <div><span>Vida</span></div>
-                    <div class="barra"><span style="width: 74%;"></span></div>
-                    <div><span>Energia</span></div>
-                    <div class="barra"><span style="width: 61%; background: linear-gradient(90deg, #f97316, #fbbf24);"></span></div>
+                    <span>Vida</span>
+                    <div class="bar"><span style="width: 65%;"></span></div>
+                    <span>Energia</span>
+                    <div class="bar"><span style="width: 55%; background: linear-gradient(90deg, #f97316, #fbbf24);"></span></div>
                 </div>
             </section>
 
-            <section class="card" style="grid-column: 1 / -1;">
-                <h2>Registro da batalha</h2>
-                <ul class="log">
-                    <li>⚔️ Time Solar inicia com um ataque rápido.</li>
-                    <li>💥 Fera do Deserto contra-ataca com impacto de areia.</li>
-                    <li>🛡️ Você usa defesa e reduz o dano.</li>
-                    <li>✨ Seu próximo turno pode decidir a vitória.</li>
+            <section class="card full">
+                <h2>Resumo do turno</h2>
+                <ul>
+                    <li>Turno 1: o jogador inicia a ação.</li>
+                    <li>Turno 2: o oponente responde em seguida.</li>
+                    <li>Turno 3: a situação ainda pode mudar.</li>
                 </ul>
 
-                <div class="acoes">
-                    <button class="ataque" type="button">Atacar</button>
-                    <button class="defesa" type="button">Defender</button>
-                    <a class="link" href="selecionar-times.php">Trocar times</a>
+                <div class="actions">
+                    <button class="button" type="button">Atacar</button>
+                    <button class="secondary-button" type="button">Defender</button>
+                    <a class="danger-button" href="selecionar-times.php">Trocar times</a>
                 </div>
             </section>
         </div>
-    </div>
+    </main>
 </body>
 </html>

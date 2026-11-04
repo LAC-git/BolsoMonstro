@@ -6,17 +6,18 @@
     <title>BolsoMonstro | Selecionar times</title>
     <style>
         :root {
-            --bg: #f7f1e7;
-            --painel: #fffdfb;
-            --painel-suave: #f4efe7;
-            --primario: #d97706;
-            --primario-suave: #f9e7c9;
-            --secundario: #2563eb;
-            --texto: #1f2937;
-            --mutado: #586e75;
-            --borda: #e5dcc8;
-            --verde: #0f766e;
-            --verde-suave: #d9f4ee;
+            --bg: #f4efe7;
+            --panel: #ffffff;
+            --panel-soft: #f8f4ef;
+            --line: #e8e0d1;
+            --text: #1f2937;
+            --muted: #5f6b76;
+            --primary: #c87f1d;
+            --primary-soft: #fbf0dc;
+            --secondary: #2d5dba;
+            --secondary-soft: #ebf1ff;
+            --success: #1d7a6b;
+            --success-soft: #eafaf5;
         }
 
         * { box-sizing: border-box; }
@@ -24,155 +25,154 @@
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #fdf6e3 0%, #f7f1ea 50%, #f2efe9 100%);
-            color: var(--texto);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 32px 18px;
         }
 
-        .container {
-            width: min(900px, 100%);
-            background: var(--painel);
-            border: 1px solid var(--borda);
-            border-radius: 24px;
-            box-shadow: 0 18px 35px rgba(88, 110, 117, 0.08);
-            padding: 32px;
+        .page-shell {
+            width: min(920px, 100%);
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 12px 28px rgba(31, 41, 55, 0.05);
         }
 
-        .cabecalho {
+        .topbar {
             display: flex;
+            align-items: center;
             justify-content: space-between;
             gap: 16px;
-            align-items: center;
             margin-bottom: 24px;
         }
 
         h1 {
             margin: 0;
-            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-size: clamp(2rem, 4vw, 2.7rem);
         }
 
-        .voltar {
+        .nav-link,
+        .button,
+        button,
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            color: var(--secundario);
-            background: #edf3ff;
-            border: 1px solid #dfe9ff;
-            border-radius: 999px;
-            padding: 10px 14px;
+            border-radius: 10px;
+            padding: 10px 16px;
             font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
         }
 
-        .selecao {
+        .nav-link {
+            background: var(--secondary-soft);
+            color: var(--secondary);
+            border: 1px solid #dbe7ff;
+        }
+
+        .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+            margin-bottom: 20px;
         }
 
-        .box {
-            border: 1px solid var(--borda);
-            background: var(--painel-suave);
-            border-radius: 18px;
-            padding: 20px;
+        .field {
+            display: grid;
+            gap: 8px;
         }
 
-        h2 {
-            margin-top: 0;
-            margin-bottom: 16px;
-            font-size: 1.3rem;
+        label {
+            font-weight: 700;
+            color: var(--text);
         }
 
         select {
             width: 100%;
+            border: 1px solid var(--line);
+            background: var(--panel-soft);
+            border-radius: 10px;
             padding: 12px 14px;
-            border: 1px solid #d9d0b5;
-            border-radius: 12px;
-            background: #fffdf9;
-            color: var(--texto);
             font-size: 1rem;
+            color: var(--text);
         }
 
-        .lista {
-            margin-top: 24px;
-            display: grid;
-            gap: 10px;
-        }
-
-        .item {
-            background: var(--painel-suave);
-            border: 1px solid var(--borda);
+        .summary {
+            background: var(--panel-soft);
+            border: 1px solid var(--line);
             border-radius: 12px;
-            padding: 12px 14px;
-            color: var(--mutado);
+            padding: 14px 16px;
+            color: var(--muted);
+            margin: 18px 0 0;
         }
 
-        .acao {
-            margin-top: 26px;
+        .actions {
             display: flex;
-            gap: 10px;
             flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
         }
 
-        .acao a, .acao button {
-            display: inline-block;
-            text-decoration: none;
-            border: none;
-            border-radius: 12px;
-            padding: 12px 16px;
-            font-weight: 700;
-            cursor: pointer;
+        .button {
+            background: var(--primary-soft);
+            color: var(--primary);
+            border: 1px solid #f1ddbb;
         }
 
-        .acao a {
-            background: var(--primario-suave);
-            color: var(--primario);
-        }
-
-        .acao button {
-            background: var(--verde-suave);
-            color: var(--verde);
+        .secondary-button {
+            background: var(--success-soft);
+            color: var(--success);
+            border: 1px solid #d5efe9;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="cabecalho">
+    <main class="page-shell">
+        <div class="topbar">
             <h1>Selecionar times</h1>
-            <a class="voltar" href="../principal.php">Voltar ao menu</a>
+            <a class="nav-link" href="../principal.php">Voltar ao menu</a>
         </div>
 
-        <div class="selecao">
-            <div class="box">
-                <h2>Time do jogador</h2>
-                <select aria-label="Selecionar time do jogador">
-                    <option>Time Solar</option>
-                    <option>Time Oceano</option>
-                    <option>Time Terra</option>
-                </select>
+        <form action="batalha.php" method="get">
+            <div class="form-grid">
+                <div class="field">
+                    <label for="time-jogador">Seu time</label>
+                    <select id="time-jogador" name="time-jogador">
+                        <option value="">Selecione</option>
+                        <option>Equipe A</option>
+                        <option>Equipe B</option>
+                        <option>Equipe C</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="time-inimigo">Oponente</label>
+                    <select id="time-inimigo" name="time-inimigo">
+                        <option value="">Selecione</option>
+                        <option>Oponente A</option>
+                        <option>Oponente B</option>
+                        <option>Oponente C</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="box">
-                <h2>Time adversário</h2>
-                <select aria-label="Selecionar time adversário">
-                    <option>Fera do Deserto</option>
-                    <option>Império de Gelo</option>
-                    <option>Clã da Floresta</option>
-                </select>
+            <div class="summary">
+                Selecione as equipes para continuar para a arena.
             </div>
-        </div>
 
-        <div class="lista">
-            <div class="item">Time Solar vs Fera do Deserto</div>
-            <div class="item">Time Oceano vs Império de Gelo</div>
-            <div class="item">Time Terra vs Clã da Floresta</div>
-        </div>
-
-        <div class="acao">
-            <a href="batalha.php">Iniciar batalha</a>
-            <button type="button" onclick="window.location.href='../meus-times.php'">Ver meus times</button>
-        </div>
-    </div>
+            <div class="actions">
+                <button class="button" type="submit">Iniciar batalha</button>
+                <a class="secondary-button" href="../meus-times.php">Meus times</a>
+            </div>
+        </form>
+    </main>
 </body>
 </html>

@@ -6,15 +6,18 @@
     <title>BolsoMonstro | Criar time</title>
     <style>
         :root {
-            --bg: #f8f2e8;
-            --painel: #fffdfb;
-            --painel-suave: #f4efe7;
-            --primario: #d97706;
-            --primario-suave: #f9e7c9;
-            --secundario: #2563eb;
-            --texto: #1f2937;
-            --mutado: #586e75;
-            --borda: #e6dcc7;
+            --bg: #f4efe7;
+            --panel: #ffffff;
+            --panel-soft: #f8f4ef;
+            --line: #e8e0d1;
+            --text: #1f2937;
+            --muted: #5f6b76;
+            --primary: #c87f1d;
+            --primary-soft: #fbf0dc;
+            --secondary: #2d5dba;
+            --secondary-soft: #ebf1ff;
+            --success: #1d7a6b;
+            --success-soft: #eafaf5;
         }
 
         * { box-sizing: border-box; }
@@ -22,45 +25,55 @@
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #fdf6e3 0%, #f8f3ea 50%, #f2efe9 100%);
-            color: var(--texto);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 32px 18px;
         }
 
-        .cartao {
-            width: min(800px, 100%);
-            background: var(--painel);
-            border: 1px solid var(--borda);
-            border-radius: 24px;
-            box-shadow: 0 18px 35px rgba(88, 110, 117, 0.08);
-            padding: 32px;
+        .page-shell {
+            width: min(860px, 100%);
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 12px 28px rgba(31, 41, 55, 0.05);
         }
 
-        .cabecalho {
+        .topbar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             gap: 16px;
             margin-bottom: 24px;
         }
 
         h1 {
             margin: 0;
-            font-size: clamp(1.9rem, 3vw, 2.7rem);
+            font-size: clamp(2rem, 4vw, 2.8rem);
         }
 
-        .voltar {
+        .nav-link,
+        .button,
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            color: var(--secundario);
+            border-radius: 10px;
+            padding: 10px 16px;
             font-weight: 700;
-            background: #edf3ff;
-            border: 1px solid #dfe9ff;
-            border-radius: 999px;
-            padding: 10px 14px;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .nav-link {
+            background: var(--secondary-soft);
+            color: var(--secondary);
+            border: 1px solid #dbe7ff;
         }
 
         form {
@@ -69,123 +82,117 @@
             gap: 18px;
         }
 
-        .campo {
+        .field {
             display: grid;
             gap: 8px;
         }
 
-        .campo.full {
+        .field.full {
             grid-column: 1 / -1;
         }
 
         label {
             font-weight: 700;
-            color: var(--texto);
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
+            border: 1px solid var(--line);
+            background: var(--panel-soft);
+            border-radius: 10px;
             padding: 12px 14px;
-            border-radius: 12px;
-            border: 1px solid #d9d0b5;
-            background: #f9f6f1;
-            color: var(--texto);
             font-size: 1rem;
+            color: var(--text);
         }
 
-        button {
-            margin-top: 8px;
-            border: none;
-            border-radius: 12px;
-            background: var(--primario-suave);
-            color: var(--primario);
-            padding: 14px 18px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .acoes {
+        .actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             margin-top: 24px;
         }
 
-        .acoes a {
-            display: inline-block;
-            text-decoration: none;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid var(--borda);
-            background: var(--painel-suave);
-            color: var(--texto);
-            font-weight: 700;
+        .button {
+            background: var(--primary-soft);
+            color: var(--primary);
+            border: 1px solid #f1ddbb;
+            border: none;
+        }
+
+        .secondary-button {
+            background: var(--success-soft);
+            color: var(--success);
+            border: 1px solid #d5efe9;
         }
     </style>
 </head>
 <body>
-    <div class="cartao">
-        <div class="cabecalho">
+    <main class="page-shell">
+        <div class="topbar">
             <h1>Criar time</h1>
-            <a class="voltar" href="principal.php">Voltar ao menu</a>
+            <a class="nav-link" href="principal.php">Voltar ao menu</a>
         </div>
 
         <form action="meus-times.php" method="get">
-            <div class="campo full">
+            <div class="field full">
                 <label for="nome-time">Nome do time</label>
-                <input id="nome-time" type="text" name="nome-time" placeholder="Ex.: Time Solar" required>
+                <input id="nome-time" name="nome-time" type="text" placeholder="Digite o nome do time" required>
             </div>
 
-            <div class="campo">
-                <label for="monstro-1">Monstro 1</label>
+            <div class="field">
+                <label for="monstro-1">Monstro principal</label>
                 <select id="monstro-1" name="monstro-1">
-                    <option>Fogo</option>
-                    <option>Água</option>
-                    <option>Terra</option>
-                    <option>Raio</option>
+                    <option value="">Selecione</option>
+                    <option>Monstro A</option>
+                    <option>Monstro B</option>
+                    <option>Monstro C</option>
+                    <option>Monstro D</option>
                 </select>
             </div>
 
-            <div class="campo">
-                <label for="monstro-2">Monstro 2</label>
+            <div class="field">
+                <label for="monstro-2">Monstro secundário</label>
                 <select id="monstro-2" name="monstro-2">
-                    <option>Falcão de Pedra</option>
-                    <option>Lagarto da Mata</option>
-                    <option>Golem Sombrio</option>
-                    <option>Dragão do Vento</option>
+                    <option value="">Selecione</option>
+                    <option>Monstro A</option>
+                    <option>Monstro B</option>
+                    <option>Monstro C</option>
+                    <option>Monstro D</option>
                 </select>
             </div>
 
-            <div class="campo">
-                <label for="monstro-3">Monstro 3</label>
+            <div class="field">
+                <label for="monstro-3">Monstro de apoio</label>
                 <select id="monstro-3" name="monstro-3">
-                    <option>Rinoceronte Solar</option>
-                    <option>Serpente Lunar</option>
-                    <option>Fera de Neve</option>
-                    <option>Coruja de Fogo</option>
+                    <option value="">Selecione</option>
+                    <option>Monstro A</option>
+                    <option>Monstro B</option>
+                    <option>Monstro C</option>
+                    <option>Monstro D</option>
                 </select>
             </div>
 
-            <div class="campo">
-                <label for="estilo">Estilo de batalha</label>
+            <div class="field">
+                <label for="estilo">Estilo</label>
                 <select id="estilo" name="estilo">
-                    <option>Ofensivo</option>
-                    <option>Defensivo</option>
-                    <option>Equilibrado</option>
-                    <option>Controle</option>
+                    <option value="">Selecione</option>
+                    <option>Estilo A</option>
+                    <option>Estilo B</option>
+                    <option>Estilo C</option>
+                    <option>Estilo D</option>
                 </select>
             </div>
 
-            <div class="campo full">
-                <button type="submit">Salvar time</button>
+            <div class="field full">
+                <button class="button" type="submit">Salvar time</button>
             </div>
         </form>
 
-        <div class="acoes">
-            <a href="meus-times.php">Ver meus times</a>
-            <a href="batalha/selecionar-times.php">Ir para batalha</a>
+        <div class="actions">
+            <a class="secondary-button" href="meus-times.php">Ver meus times</a>
+            <a class="secondary-button" href="batalha/selecionar-times.php">Ir para batalha</a>
         </div>
-    </div>
+    </main>
 </body>
 </html>
