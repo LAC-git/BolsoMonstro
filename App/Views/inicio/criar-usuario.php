@@ -93,7 +93,7 @@
 <body>
     <div class="cartao">
         <h1>Criar usuário</h1>
-        <form>
+        <form action="../jogo/principal.php" method="post">
             <input type="text" placeholder="Nome do treinador" aria-label="Nome do treinador">
             <input type="email" placeholder="E-mail" aria-label="E-mail">
             <input type="password" placeholder="Senha" aria-label="Senha">
