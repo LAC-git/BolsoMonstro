@@ -94,7 +94,7 @@
 <body>
     <div class="cartao">
         <h1>Login</h1>
-        <form>
+        <form action="../jogo/principal.php" method="post">
             <input type="email" placeholder="E-mail" aria-label="E-mail">
             <input type="password" placeholder="Senha" aria-label="Senha">
             <button type="submit">Entrar</button>
