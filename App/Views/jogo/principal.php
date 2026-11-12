@@ -192,6 +192,11 @@
         }
 
         .card:nth-child(4) .acao {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .card:nth-child(5) .acao {
             background: #f3e8ff;
             color: #7c3aed;
         }
@@ -206,6 +211,7 @@
                 <a href="batalha/selecionar-times.php">Batalha</a>
                 <a href="team-builder.php">Criar time</a>
                 <a href="meus-times.php">Meus times</a>
+                <a href="monstros.php">Monstros</a>
                 <a href="loja.php">Loja</a>
             </nav>
         </div>
@@ -240,6 +246,13 @@
                 <h2>Meus times</h2>
                 <p>Visualize todos os times cadastrados e selecione o melhor para cada desafio.</p>
                 <span class="acao">Ver times</span>
+            </a>
+
+            <a class="card" href="monstros.php">
+                <div class="icone">🐾</div>
+                <h2>Monstros</h2>
+                <p>Explore o catálogo completo de monstros, tipos, atributos, golpes e estados.</p>
+                <span class="acao">Ver monstros</span>
             </a>
 
             <a class="card" href="loja.php">
