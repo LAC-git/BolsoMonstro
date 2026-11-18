@@ -88,36 +88,6 @@
             padding: 40px 20px 80px;
         }
 
-        .hero {
-            background: linear-gradient(135deg, rgba(249, 231, 201, 0.8), rgba(223, 233, 255, 0.8));
-            border: 1px solid var(--borda);
-            border-radius: 28px;
-            padding: 40px 32px;
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.06);
-        }
-
-        .tag {
-            margin: 0 0 12px;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--secundario);
-            font-weight: 700;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: clamp(2.2rem, 5vw, 4rem);
-        }
-
-        .subtitulo {
-            margin: 16px 0 0;
-            color: var(--mutado);
-            max-width: 700px;
-            line-height: 1.7;
-            font-size: 1.06rem;
-        }
-
         .grid {
             margin-top: 36px;
             display: grid;
@@ -222,14 +192,6 @@
     </header>
 
     <main class="conteudo">
-        <section class="hero">
-            <p class="tag">Centro do treinador</p>
-            <h1>Prepare sua equipe e domine a arena</h1>
-            <p class="subtitulo">
-                Acesse rapidamente as principais ações do jogo: criar um time, revisar seus monstros, entrar em batalha e comprar itens para fortalecer sua estratégia.
-            </p>
-        </section>
-
         <section class="grid" aria-label="Sessões do jogo">
             <a class="card" href="batalha/selecionar-times.php">
                 <div class="icone">⚔️</div>
