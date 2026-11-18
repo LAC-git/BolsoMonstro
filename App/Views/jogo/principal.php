@@ -32,9 +32,56 @@
         .menu { display: flex; gap: 10px; }
         .menu a { text-decoration: none; }
 
-        .card {
-            display: none;
+        #conteudo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
         }
+
+        .construcao {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .overlay { display: none; }
+        .construcao:hover .overlay {
+            display: block;    
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+        }
+
+        #arena {
+            z-index: 100;
+            position: fixed;
+            width: 358px;
+            height: 358px;
+            left: 1303px;
+            top: 50px;
+        }
+
+        #ginasio {
+
+        }
+
+        #meus-times {
+
+        }
+
+        #zoo {
+
+        }
+
+        #loja {
+
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -52,34 +99,55 @@
         </div>
     </header>
 
-    <main class="conteudo">
-        <section class="grid" aria-label="Sessões do jogo">
-            <a id="batalha" class="card" href="batalha/selecionar-times.php">
-                <img src="../imgs/Batalha.png" alt="Batalhe: Escolha os times, analise o confronto e avance para a arena" />
-                <h2>Batalha</h2>
-                <p>Escolha os times, analise o confronto e avance para a arena.</p>
+    <main id="conteudo">
+        <div id="div-arena" class="construcao">
+            <a id="arena"  href="batalha/selecionar-times.php">
+                <img src="../imgs/Arena.png" alt="Arena" />
+                <div class="overlay">
+                    <h2>Batalha</h2>
+                    <p>Escolha os times, analise o confronto e avance para a arena.</p>
+                </div>
             </a>
+        </div>
 
-            <a id="criar-time" class="card" href="team-builder.php">
-                <h2>Criar time</h2>
-                <p>Monte a formação ideal com monstros, habilidades e combinações estratégicas.</p>
+        <div id="div-ginasio" class="construcao">
+            <a id="ginasio" href="team-builder.php">
+                <img src="../imgs/Ginasio.png" alt="Ginasio" />
+                <div class="overlay">
+                    <h2>Criar time</h2>
+                    <p>Monte a formação ideal com monstros, habilidades e combinações estratégicas.</p>
+                </div>
             </a>
+        </div>
 
-            <a id="meus-times" class="card" href="meus-times.php">
-                <h2>Meus times</h2>
-                <p>Visualize todos os times cadastrados e selecione o melhor para cada desafio.</p>
+        <div id="div-meus-times" class="construcao">
+            <a id="meus-times" href="meus-times.php">
+                <div class="overlay">
+                    <h2>Meus times</h2>
+                    <p>Visualize todos os times cadastrados e selecione o melhor para cada desafio.</p>
+                </div>
             </a>
+        </div>
 
-            <a id="monstros" class="card" href="monstros.php">
-                <h2>Monstros</h2>
-                <p>Explore o catálogo completo de monstros, tipos, atributos, golpes e estados.</p>
+        <div id="div-zoo" class="construcao">
+            <a id="zoo"  href="monstros.php">
+                <img src="../imgs/Zoo.png" alt="Monstros" />
+                <div class="overlay">
+                    <h2>Monstros</h2>
+                    <p>Explore o catálogo completo de monstros, tipos, atributos, golpes e estados.</p>
+                </div>
             </a>
+        </div>
 
-            <a id="loja" class="card" href="loja.php">
-                <h2>Loja</h2>
-                <p>Compre poções, itens e melhorias para preparar sua equipe para a próxima batalha.</p>
+        <div id="div-loja " class="construcao">
+            <a id="loja"  href="loja.php">
+                <img src="../imgs/Loja.png" alt="Loja" />
+                <div class="overlay">
+                    <h2>Loja</h2>
+                    <p>Compre poções, itens e melhorias para preparar sua equipe para a próxima batalha.</p>
+                </div>
             </a>
-        </section>
+        </div>
     </main>
 </body>
 </html>
