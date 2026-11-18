@@ -113,15 +113,6 @@
             box-shadow: 0 18px 28px rgba(31, 41, 55, 0.08);
         }
 
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: 0 auto auto 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primario), var(--secundario), var(--verde));
-        }
-
         .card h2 {
             margin: 0 0 10px;
             font-size: 1.3rem;
