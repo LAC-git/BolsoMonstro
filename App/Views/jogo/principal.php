@@ -26,7 +26,11 @@
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #fdf6e3 0%, #f6f0e4 45%, #f0ecf4 100%);
+            background-image: url("../imgs/MapaPrincipal.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--texto);
             min-height: 100vh;
         }
