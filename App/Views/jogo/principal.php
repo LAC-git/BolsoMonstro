@@ -122,17 +122,6 @@
             background: linear-gradient(90deg, var(--primario), var(--secundario), var(--verde));
         }
 
-        .icone {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            font-size: 1.5rem;
-            margin-bottom: 18px;
-            background: var(--painel-suave);
-        }
-
         .card h2 {
             margin: 0 0 10px;
             font-size: 1.3rem;
@@ -194,35 +183,30 @@
     <main class="conteudo">
         <section class="grid" aria-label="Sessões do jogo">
             <a class="card" href="batalha/selecionar-times.php">
-                <div class="icone">⚔️</div>
                 <h2>Batalha</h2>
                 <p>Escolha os times, analise o confronto e avance para a arena.</p>
                 <span class="acao">Ir para batalha</span>
             </a>
 
             <a class="card" href="team-builder.php">
-                <div class="icone">🧩</div>
                 <h2>Criar time</h2>
                 <p>Monte a formação ideal com monstros, habilidades e combinações estratégicas.</p>
                 <span class="acao">Criar time</span>
             </a>
 
             <a class="card" href="meus-times.php">
-                <div class="icone">🧙‍♂️</div>
                 <h2>Meus times</h2>
                 <p>Visualize todos os times cadastrados e selecione o melhor para cada desafio.</p>
                 <span class="acao">Ver times</span>
             </a>
 
             <a class="card" href="monstros.php">
-                <div class="icone">🐾</div>
                 <h2>Monstros</h2>
                 <p>Explore o catálogo completo de monstros, tipos, atributos, golpes e estados.</p>
                 <span class="acao">Ver monstros</span>
             </a>
 
             <a class="card" href="loja.php">
-                <div class="icone">🛒</div>
                 <h2>Loja</h2>
                 <p>Compre poções, itens e melhorias para preparar sua equipe para a próxima batalha.</p>
                 <span class="acao">Acessar loja</span>
