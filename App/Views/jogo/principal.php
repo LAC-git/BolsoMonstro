@@ -38,12 +38,10 @@
             align-items: center;
         }
 
-        /* Canvas proporcional para a imagem recortada em 1535x864 (16:9) */
+        /* Canvas proporcional para a imagem do mapa em 1535x864 (16:9) */
         .mapa-canvas {
             position: relative;
             flex-shrink: 0;
-            width: max(100vw, calc(100svh * (1535 / 864)));
-            height: max(100svh, calc(100vw * (864 / 1535)));
         }
 
         .mapa-bg {
@@ -103,38 +101,38 @@
         /* --- COLE AQUI AS PORCENTAGENS GERADAS NO CONSOLE --- */
 
         #arena {
-            left: 67.86%;
-            top: 5.79%;
-            width: 18.65%;
-            height: 35.00%;
+            left: 62.62%;
+            top: 21.51%;
+            width: 20.9%;
+            height: 26.1%;
         }
 
         #ginasio {
-            left: 20%;
-            top: 25%;
-            width: 16%;
-            height: 25%;
+            left: 29.7%;
+            top: 12.21%;
+            width: 17%;
+            height: 35.05%;
         }
 
         #meus-times {
-            left: 42%;
-            top: 45%;
-            width: 16%;
-            height: 25%;
+            left: 37.18%;
+            top: 50.7%;
+            width: 19.2%;
+            height: 24.1%;
         }
 
         #zoo {
-            left: 15%;
-            top: 62%;
-            width: 16%;
-            height: 25%;
+            left: 66.5%;
+            top: 57.83%;
+            width: 24.48%;
+            height: 28.34%;
         }
 
         #loja {
-            left: 68%;
-            top: 60%;
-            width: 16%;
-            height: 25%;
+            left: 15.87%;
+            top: 41.31%;
+            width: 10.57%;
+            height: 17.84%;
         }
     </style>
 </head>
@@ -181,52 +179,88 @@
         </div>
     </div>
 
-    <!-- HELPER TEMPORÁRIO: Arraste sobre os prédios para ver as porcentagens no Console (F12). Apague este <script> quando terminar! -->
     <script>
-        const canvas = document.querySelector('.mapa-canvas');
-        const guide = document.createElement('div');
-        Object.assign(guide.style, {
-            position: 'absolute',
-            border: '2px solid #00ff88',
-            background: 'rgba(0, 255, 136, 0.2)',
-            pointerEvents: 'none',
-            zIndex: '999',
-            display: 'none'
-        });
-        canvas.appendChild(guide);
+        // Mantém a proporção real da imagem sem esticar
+        (() => {
+            const canvas = document.querySelector('.mapa-canvas');
+            const bgImg = document.querySelector('.mapa-bg');
 
-        let startX, startY, dragging = false;
-        const toPct = (val, max) => ((val / max) * 100).toFixed(2);
+            function syncCanvasSize() {
+                if (!bgImg.naturalWidth) return; // A imagem ainda não carregou, então não podemos calcular a proporção
 
-        canvas.addEventListener('pointerdown', (e) => {
-            e.preventDefault();
-            const r = canvas.getBoundingClientRect();
-            startX = e.clientX - r.left;
-            startY = e.clientY - r.top;
-            dragging = true;
-            guide.style.display = 'block';
-        });
+                const imgRatio = bgImg.naturalWidth / bgImg.naturalHeight;  // Proporção da imagem original
+                const winW = window.innerWidth;     // Largura da janela
+                const winH = window.innerHeight;    // Altura da janela              
+                const winRatio = winW / winH;       // Proporção da janela            
 
-        window.addEventListener('pointermove', (e) => {
-            if (!dragging) return;
-            const r = canvas.getBoundingClientRect();
-            const curX = e.clientX - r.left;
-            const curY = e.clientY - r.top;
+                // Se a janela for mais larga que a imagem, ajustamos a largura da imagem para a largura da janela e calculamos a altura proporcional.
+                // Caso contrário, ajustamos a altura da imagem para a altura da janela e calculamos a largura proporcional. 
+                if (winRatio > imgRatio) {
+                    canvas.style.width = `${winW}px`; 
+                    canvas.style.height = `${winW / imgRatio}px`; 
+                } else {
+                    canvas.style.height = `${winH}px`; 
+                    canvas.style.width = `${winH * imgRatio}px`; 
+                }
+            }
+
+            // Sincroniza o tamanho do canvas com a imagem de fundo quando a imagem carrega e quando a janela é redimensionada
+            bgImg.addEventListener('load', syncCanvasSize);
+            window.addEventListener('resize', syncCanvasSize);
+            syncCanvasSize();
+        })();
+    </script>
+
+    <!-- 2. TEMPORÁRIO: Arraste sobre os prédios para ver as porcentagens no Console (apague depois) -->
+    <script>
+        /*
+        (() => {
+            const canvas = document.querySelector('.mapa-canvas');
+            const guide = document.createElement('div');
             Object.assign(guide.style, {
-                left: `${toPct(Math.min(startX, curX), r.width)}%`,
-                top: `${toPct(Math.min(startY, curY), r.height)}%`,
-                width: `${toPct(Math.abs(curX - startX), r.width)}%`,
-                height: `${toPct(Math.abs(curY - startY), r.height)}%`
+                position: 'absolute',
+                border: '2px solid #00ff88',
+                background: 'rgba(0, 255, 136, 0.2)',
+                pointerEvents: 'none',
+                zIndex: '999',
+                display: 'none'
             });
-        });
+            canvas.appendChild(guide);
 
-        window.addEventListener('pointerup', () => {
-            if (!dragging) return;
-            dragging = false;
-            console.log(`left: ${guide.style.left};\ntop: ${guide.style.top};\nwidth: ${guide.style.width};\nheight: ${guide.style.height};`);
-        });
+            let startX, startY, dragging = false;
+            const toPct = (val, max) => ((val / max) * 100).toFixed(2);
 
-        canvas.addEventListener('click', (e) => e.preventDefault());
+            canvas.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
+                const r = canvas.getBoundingClientRect();
+                startX = e.clientX - r.left;
+                startY = e.clientY - r.top;
+                dragging = true;
+                guide.style.display = 'block';
+            });
+
+            window.addEventListener('pointermove', (e) => {
+                if (!dragging) return;
+                const r = canvas.getBoundingClientRect();
+                const curX = e.clientX - r.left;
+                const curY = e.clientY - r.top;
+                Object.assign(guide.style, {
+                    left: `${toPct(Math.min(startX, curX), r.width)}%`,
+                    top: `${toPct(Math.min(startY, curY), r.height)}%`,
+                    width: `${toPct(Math.abs(curX - startX), r.width)}%`,
+                    height: `${toPct(Math.abs(curY - startY), r.height)}%`
+                });
+            });
+
+            window.addEventListener('pointerup', () => {
+                if (!dragging) return;
+                dragging = false;
+                console.log(`left: ${guide.style.left};\ntop: ${guide.style.top};\nwidth: ${guide.style.width};\nheight: ${guide.style.height};`);
+            });
+
+            canvas.addEventListener('click', (e) => e.preventDefault());
+        })();
+        */
     </script>
 
 </body>
