@@ -79,17 +79,17 @@
             flex-direction: column;
             justify-content: center;
             text-align: center;
-        }
-
-        .overlay h2 {
-            color: var(--primario);
-            font-size: clamp(1rem, 1.3vw, 1.4rem);
-            margin-bottom: 6px;
-        }
-
-        .overlay p {
-            font-size: clamp(0.75rem, 0.9vw, 0.95rem);
-            line-height: 1.3;
+        
+            h2 {
+                color: var(--primario);
+                font-size: clamp(1rem, 1.3vw, 1.4rem);
+                margin-bottom: 6px;
+            }
+            
+            p {
+                font-size: clamp(0.75rem, 0.9vw, 0.95rem);
+                line-height: 1.3;
+            }
         }
 
         /* Mostra o card ao passar o mouse ou tocar */
@@ -209,58 +209,6 @@
             window.addEventListener('resize', syncCanvasSize);
             syncCanvasSize();
         })();
-    </script>
-
-    <!-- 2. TEMPORÁRIO: Arraste sobre os prédios para ver as porcentagens no Console (apague depois) -->
-    <script>
-        /*
-        (() => {
-            const canvas = document.querySelector('.mapa-canvas');
-            const guide = document.createElement('div');
-            Object.assign(guide.style, {
-                position: 'absolute',
-                border: '2px solid #00ff88',
-                background: 'rgba(0, 255, 136, 0.2)',
-                pointerEvents: 'none',
-                zIndex: '999',
-                display: 'none'
-            });
-            canvas.appendChild(guide);
-
-            let startX, startY, dragging = false;
-            const toPct = (val, max) => ((val / max) * 100).toFixed(2);
-
-            canvas.addEventListener('pointerdown', (e) => {
-                e.preventDefault();
-                const r = canvas.getBoundingClientRect();
-                startX = e.clientX - r.left;
-                startY = e.clientY - r.top;
-                dragging = true;
-                guide.style.display = 'block';
-            });
-
-            window.addEventListener('pointermove', (e) => {
-                if (!dragging) return;
-                const r = canvas.getBoundingClientRect();
-                const curX = e.clientX - r.left;
-                const curY = e.clientY - r.top;
-                Object.assign(guide.style, {
-                    left: `${toPct(Math.min(startX, curX), r.width)}%`,
-                    top: `${toPct(Math.min(startY, curY), r.height)}%`,
-                    width: `${toPct(Math.abs(curX - startX), r.width)}%`,
-                    height: `${toPct(Math.abs(curY - startY), r.height)}%`
-                });
-            });
-
-            window.addEventListener('pointerup', () => {
-                if (!dragging) return;
-                dragging = false;
-                console.log(`left: ${guide.style.left};\ntop: ${guide.style.top};\nwidth: ${guide.style.width};\nheight: ${guide.style.height};`);
-            });
-
-            canvas.addEventListener('click', (e) => e.preventDefault());
-        })();
-        */
     </script>
 
 </body>
