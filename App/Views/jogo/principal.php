@@ -122,40 +122,11 @@
 
         /* --- POSIÇÕES DOS PRÉDIOS --- */
 
-        #arena {
-            left: 62.62%;
-            top: 21.51%;
-            width: 20.9%;
-            height: 26.1%;
-        }
-
-        #ginasio {
-            left: 29.7%;
-            top: 12.21%;
-            width: 17%;
-            height: 35.05%;
-        }
-
-        #meus-times {
-            left: 37.18%;
-            top: 50.7%;
-            width: 19.2%;
-            height: 24.1%;
-        }
-
-        #zoo {
-            left: 66.5%;
-            top: 57.83%;
-            width: 24.48%;
-            height: 28.34%;
-        }
-
-        #loja {
-            left: 15.87%;
-            top: 41.31%;
-            width: 10.57%;
-            height: 17.84%;
-        }
+        #arena {        left: 62.62%;   top: 21.51%;    width: 20.9%;   height: 26.1%;  }
+        #ginasio {      left: 29.7%;    top: 12.21%;    width: 17%;     height: 35.05%; }
+        #meus-times {   left: 37.18%;   top: 50.7%;     width: 19.2%;   height: 24.1%;  }
+        #zoo {          left: 66.5%;    top: 57.83%;    width: 24.48%;  height: 28.34%; }
+        #loja {         left: 15.87%;   top: 41.31%;    width: 10.57%;  height: 17.84%; }
 
         /* --- CLIP-PATHS DELINEANDO OS LUGARES --- */
 
