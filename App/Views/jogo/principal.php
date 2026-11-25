@@ -7,7 +7,7 @@
     <style>
         :root {
             --painel-suave: #f4efe8;
-            --primario: #9aeaf5;
+            --primario: #b8eff6;
             --mutado: #52606d;
             --borda: #e5dcc8;
             --texto: #1f2933;
@@ -54,6 +54,7 @@
 
         /* Wrapper pai sem clip-path para o drop-shadow brilhar por fora das bordas */
         .hotspot {
+            --glow-color: var(--primario); /* Cor padrão caso não seja definida */
             position: absolute;
             display: flex;
             align-items: center;
@@ -66,8 +67,8 @@
             &:hover,
             &:focus {
                 filter:
-                    drop-shadow(0 8px 6px #f8f8f8)
-                    drop-shadow(0 4px 16px var(--primario));
+                    drop-shadow(0 0 6px color-mix(in srgb, var(--glow-color) 75%, white))
+                    drop-shadow(0 0 18px var(--glow-color));
             }
         }
 
@@ -97,12 +98,12 @@
             color: #ffffff;
             padding: 12px 14px;
             border-radius: 10px;
-            border: 1px solid var(--primario);
+            border: 1px solid var(--glow-color);
             width: 92%;
             text-align: center;
         
             h2 {
-                color: var(--primario);
+                color: var(--glow-color);
                 font-size: clamp(0.95rem, 1.25vw, 1.35rem);
                 margin-bottom: 4px;
             }
@@ -120,13 +121,23 @@
             transform: translateY(0);
         }
 
-        /* --- POSIÇÕES DOS PRÉDIOS --- */
+        /* --- POSIÇÕES E CORES DOS PRÉDIOS --- */
 
-        #arena {        left: 62.62%;   top: 21.51%;    width: 20.9%;   height: 26.1%;  }
-        #ginasio {      left: 29.7%;    top: 12.21%;    width: 17%;     height: 35.05%; }
-        #meus-times {   left: 37.18%;   top: 50.7%;     width: 19.2%;   height: 24.1%;  }
-        #zoo {          left: 66.5%;    top: 57.83%;    width: 24.48%;  height: 28.34%; }
-        #loja {         left: 15.87%;   top: 41.31%;    width: 10.57%;  height: 17.84%; }
+        #arena {
+            --glow-color: #ef4444; /* Vermelho (Batalha) */
+            left: 62.62%;   top: 21.51%;    width: 20.9%;   height: 26.1%;  }
+        #ginasio {
+            --glow-color: #f59e0b; /* Dourado (Meus times) */
+            left: 29.7%;    top: 12.21%;    width: 17%;     height: 35.05%; }
+        #criar-times {
+            --glow-color: #3b82f6; /* Azul (Criar times) */
+            left: 37.18%;   top: 50.7%;     width: 19.2%;   height: 24.1%;  }
+        #zoo {
+            --glow-color: #22c55e; /* Verde (Monstros) */
+            left: 66.5%;    top: 57.83%;    width: 24.48%;  height: 28.34%; }
+        #loja {
+            --glow-color: #a855f7; /* Roxo (Loja) */
+            left: 15.87%;   top: 41.31%;    width: 10.57%;  height: 17.84%; }
 
         /* --- CLIP-PATHS DELINEANDO OS LUGARES --- */
 
@@ -151,7 +162,7 @@
                 24.62% 7.41%);
         }
 
-        #meus-times .glow-shape {
+        #criar-times .glow-shape {
             clip-path: polygon( 38.1% 2%, 63.41% 1.56%, 79.88% 13.63%, 
                 82.43% 23.51%, 87.95% 18.44%, 95.19% 23.63%, 94.95% 34.82%, 
                 89.48% 38%, 98.57% 44.63%, 99.74% 85.84%, 93.31% 86.38%, 
@@ -193,19 +204,19 @@
                 </div>
             </a>
 
-            <a id="ginasio" class="hotspot" href="team-builder.php">
-                <div class="glow-shape"></div>
-                <div class="overlay">
-                    <h2>Criar time</h2>
-                    <p>Monte a formação ideal com monstros, habilidades e combinações estratégicas.</p>
-                </div>
-            </a>
-
-            <a id="meus-times" class="hotspot" href="meus-times.php">
+            <a id="ginasio" class="hotspot" href="meus-times.php">
                 <div class="glow-shape"></div>
                 <div class="overlay">
                     <h2>Meus times</h2>
                     <p>Visualize todos os times cadastrados e selecione o melhor para cada desafio.</p>
+                </div>
+            </a>
+
+            <a id="criar-times" class="hotspot" href="team-builder.php">
+                <div class="glow-shape"></div>
+                <div class="overlay">
+                    <h2>Criar time</h2>
+                    <p>Monte a formação ideal com monstros, habilidades e combinações estratégicas.</p>
                 </div>
             </a>
 
