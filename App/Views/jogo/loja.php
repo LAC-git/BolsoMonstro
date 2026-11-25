@@ -163,9 +163,6 @@ $detalhesItens = [
             <h1>Loja</h1>
             <nav class="menu" aria-label="Menu da loja">
                 <a href="principal.php">Principal</a>
-                <a href="team-builder.php">Criar time</a>
-                <a href="meus-times.php">Meus times</a>
-                <a href="batalha/selecionar-times.php">Batalha</a>
                 <a href="inventario.php">Inventário</a>
             </nav>
         </div>

@@ -29,7 +29,8 @@ $itens = $loja->get_precos();
         <div class="header">
             <h1>Inventário</h1>
             <nav class="menu" aria-label="Menu do inventário">
-                <a href="loja.php">Voltar à loja</a>
+                <a href="loja.php">Loja</a>
+                <a href="principal.php">Principal</a>
             </nav>
         </div>
 

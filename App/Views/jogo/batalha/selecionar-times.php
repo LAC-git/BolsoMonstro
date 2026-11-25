@@ -170,7 +170,6 @@
 
             <div class="actions">
                 <button class="button" type="submit">Iniciar batalha</button>
-                <a class="secondary-button" href="../meus-times.php">Meus times</a>
             </div>
         </form>
     </main>

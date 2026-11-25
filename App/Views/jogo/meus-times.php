@@ -134,7 +134,6 @@
                 <a href="principal.php">Principal</a>
                 <a href="team-builder.php">Criar time</a>
                 <a href="batalha/selecionar-times.php">Batalha</a>
-                <a href="loja.php">Loja</a>
             </nav>
         </div>
 

@@ -451,7 +451,6 @@ if (!function_exists('tipo_emoji')) {
 
             <div class="footer-actions">
                 <a class="secondary-button" href="meus-times.php">Ver meus times</a>
-                <a class="danger-button" href="batalha/selecionar-times.php">Ir para batalha</a>
                 <button class="button" type="submit">Salvar time</button>
             </div>
         </form>
