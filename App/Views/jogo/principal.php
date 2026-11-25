@@ -197,7 +197,7 @@
             <img src="../imgs/MapaPrincipal.png" alt="Mapa Principal BolsoMonstro" class="mapa-bg">
 
             <a id="arena" class="hotspot" href="batalha/selecionar-times.php">
-                <div class="glow-shape"></div>
+                <div class="glow-wrapper"> <div class="glow-shape"></div> </div>
                 <div class="overlay">
                     <h2>Batalha</h2>
                     <p>Escolha os times, analise o confronto e avance para a arena.</p>
@@ -205,7 +205,7 @@
             </a>
 
             <a id="ginasio" class="hotspot" href="meus-times.php">
-                <div class="glow-shape"></div>
+                <div class="glow-wrapper"> <div class="glow-shape"></div> </div>
                 <div class="overlay">
                     <h2>Meus times</h2>
                     <p>Visualize todos os times cadastrados e selecione o melhor para cada desafio.</p>
@@ -213,7 +213,7 @@
             </a>
 
             <a id="criar-times" class="hotspot" href="team-builder.php">
-                <div class="glow-shape"></div>
+                <div class="glow-wrapper"> <div class="glow-shape"></div> </div>
                 <div class="overlay">
                     <h2>Criar time</h2>
                     <p>Monte a formação ideal com monstros, habilidades e combinações estratégicas.</p>
@@ -221,7 +221,7 @@
             </a>
 
             <a id="zoo" class="hotspot" href="monstros.php">
-                <div class="glow-shape"></div>
+                <div class="glow-wrapper"> <div class="glow-shape"></div> </div>
                 <div class="overlay">
                     <h2>Monstros</h2>
                     <p>Explore o catálogo completo de monstros, tipos, atributos, golpes e estados.</p>
@@ -229,11 +229,12 @@
             </a>
 
             <a id="loja" class="hotspot" href="loja.php">
-                <div class="glow-shape"></div>
+                <div class="glow-wrapper"> <div class="glow-shape"></div> </div>
                 <div class="overlay">
                     <h2>Loja</h2>
                     <p>Compre poções, itens e melhorias para preparar sua equipe para a próxima batalha.</p>
                 </div>
+
             </a>
         </div>
     </div>
