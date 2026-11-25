@@ -180,6 +180,35 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        /* Card maior fixo na parte inferior, mais transparente que os overlays dos prédios */
+        .dica-rodape {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 40;
+            pointer-events: none;
+            background-color: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 16px 28px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+            width: max-content;
+            min-width: min(360px, calc(100vw - 32px));
+            max-width: min(680px, calc(100vw - 32px));
+            text-align: center;
+        }
+
+        .dica-rodape p {
+            color: var(--primario);
+            font-size: clamp(0.95rem, 1.25vw, 1.2rem);
+            font-weight: 600;
+            line-height: 1.45;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+        }
+
         /* --- POSIÇÕES, CORES E CONTORNOS DOS PRÉDIOS ---
            --p1   = primeiro ponto do polígono
            --rest = demais pontos (separados para montar o recorte "furado") */
@@ -304,6 +333,10 @@
             </a>
         </div>
     </div>
+
+    <aside class="dica-rodape" aria-label="Instrução do mapa">
+        <p>Clique nos lugares do mapa para realizar ações no jogo.</p>
+    </aside>
 
     <script>
         // Mantém a proporção real da imagem sem esticar
