@@ -93,7 +93,7 @@
 <body>
     <div class="cartao">
         <h1>Criar usuário</h1>
-        <form action="PrincipalController.php" method="post">
+        <form action="/BolsoMonstro/App/Controllers/PrincipalController.php" method="post">
             <input type="text" placeholder="Nome do treinador" aria-label="Nome do treinador">
             <input type="email" placeholder="E-mail" aria-label="E-mail">
             <input type="password" placeholder="Senha" aria-label="Senha">
@@ -101,8 +101,8 @@
         </form>
 
         <div class="botoesAcesso">
-            <a href="InicioController.php?acao=login">Fazer login</a>
-            <a href="InicioController.php?acao=index">Início</a>
+            <a href="/BolsoMonstro/App/Controllers/InicioController.php?acao=login">Fazer login</a>
+            <a href="/BolsoMonstro/App/Controllers/InicioController.php?acao=index">Início</a>
         </div>
     </div>
 </body>

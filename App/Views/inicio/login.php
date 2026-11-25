@@ -94,15 +94,15 @@
 <body>
     <div class="cartao">
         <h1>Login</h1>
-        <form action="PrincipalController.php" method="post">
+        <form action="/BolsoMonstro/App/Controllers/PrincipalController.php" method="post">
             <input type="email" placeholder="E-mail" aria-label="E-mail">
             <input type="password" placeholder="Senha" aria-label="Senha">
             <button type="submit">Entrar</button>
         </form>
 
         <div class="botoesAcesso">
-            <a href="InicioController.php?acao=criar">Criar conta</a>
-            <a href="InicioController.php?acao=index">Início</a>
+            <a href="/BolsoMonstro/App/Controllers/InicioController.php?acao=criar">Criar conta</a>
+            <a href="/BolsoMonstro/App/Controllers/InicioController.php?acao=index">Início</a>
         </div>
     </div>
 </body>

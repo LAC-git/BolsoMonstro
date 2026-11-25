@@ -87,8 +87,8 @@
         <!-- Botões de interação sobre a imagem -->
         <button class="area-botao atacar"   type="button" onclick="atacar()"   aria-label="Atacar"></button>
         <button class="area-botao defender" type="button" onclick="defender()" aria-label="Defender"></button>
-        <a      class="area-botao trocar"   href="BatalhaController.php?acao=selecionar" aria-label="Trocar times"></a>
-        <a      class="area-botao voltar"   href="PrincipalController.php" aria-label="Voltar ao menu"></a>
+        <a      class="area-botao trocar"   href="/BolsoMonstro/App/Controllers/BatalhaController.php?acao=selecionar" aria-label="Trocar times"></a>
+        <a      class="area-botao voltar"   href="/BolsoMonstro/App/Controllers/PrincipalController.php" aria-label="Voltar ao menu"></a>
     </main>
 
     <script>

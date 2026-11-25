@@ -417,8 +417,8 @@ $total = count($catalogo);
         <div class="topbar">
             <h1>Monstros</h1>
             <div class="footer-actions">
-                <a class="secondary-button" href="MeusTimesController.php">Meus times</a>
-                <a class="button" href="PrincipalController.php">Voltar ao menu</a>
+                <a class="secondary-button" href="/BolsoMonstro/App/Controllers/MeusTimesController.php">Meus times</a>
+                <a class="button" href="/BolsoMonstro/App/Controllers/PrincipalController.php">Voltar ao menu</a>
             </div>
         </div>
 
