@@ -1,4 +1,25 @@
 <!DOCTYPE html>
+<?php
+require_once __DIR__ . '/../../../config/autoload.php';
+
+$loja = new Loja();
+$itensLoja = $loja->get_precos();
+
+$detalhesItens = [
+    'Potion' => ['emoji' => '🧪', 'nome' => 'Potion', 'descricao' => 'Recupera uma quantidade moderada de HP do monstro.'],
+    'SuperPotion' => ['emoji' => '🧪', 'nome' => 'Super Potion', 'descricao' => 'Recupera uma quantidade maior de HP do monstro.'],
+    'HyperPotion' => ['emoji' => '🧪', 'nome' => 'Hyper Potion', 'descricao' => 'Recupera uma grande quantidade de HP do monstro.'],
+    'MaxPotion' => ['emoji' => '💉', 'nome' => 'Max Potion', 'descricao' => 'Restaura completamente o HP do monstro.'],
+    'FullRestore' => ['emoji' => '🌟', 'nome' => 'Full Restore', 'descricao' => 'Restaura todo o HP e cura alterações de status.'],
+    'Antidote' => ['emoji' => '🟢', 'nome' => 'Antidote', 'descricao' => 'Cura o status de envenenamento.'],
+    'BurnHeal' => ['emoji' => '🔥', 'nome' => 'Burn Heal', 'descricao' => 'Cura o status de queimadura.'],
+    'IceHeal' => ['emoji' => '❄️', 'nome' => 'Ice Heal', 'descricao' => 'Cura o status de congelamento.'],
+    'Awakening' => ['emoji' => '☀️', 'nome' => 'Awakening', 'descricao' => 'Acorda monstros que estão dormindo.'],
+    'ParalyzeHeal' => ['emoji' => '⚡', 'nome' => 'Paralyze Heal', 'descricao' => 'Cura o status de paralisação.'],
+    'FullHeal' => ['emoji' => '💖', 'nome' => 'Full Heal', 'descricao' => 'Cura qualquer alteração de status.'],
+    'Revive' => ['emoji' => '✨', 'nome' => 'Revive', 'descricao' => 'Revive um monstro desmaiado com parte do HP.'],
+];
+?>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -76,6 +97,20 @@
             border-radius: 22px;
             padding: 22px 20px;
             box-shadow: 0 12px 22px rgba(31, 41, 55, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item p {
+            height: 3.2em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .item .preco {
+            margin-top: auto;
         }
 
         .emoji {
@@ -131,49 +166,23 @@
                 <a href="team-builder.php">Criar time</a>
                 <a href="meus-times.php">Meus times</a>
                 <a href="batalha/selecionar-times.php">Batalha</a>
+                <a href="inventario.php">Inventário</a>
             </nav>
         </div>
 
         <section class="grid">
-            <article class="item">
-                <div class="emoji">🧪</div>
-                <h2>Poções de Cura</h2>
-                <p>Recupere energia e mantenha seus monstros prontos para o combate.</p>
-                <div class="preco">
-                    <span>45 moedas</span>
-                    <button class="comprar" type="button">Comprar</button>
-                </div>
-            </article>
-
-            <article class="item">
-                <div class="emoji">⚡</div>
-                <h2>Runas de Ataque</h2>
-                <p>Aumenta o dano em batalhas rápidas e intensas.</p>
-                <div class="preco">
-                    <span>70 moedas</span>
-                    <button class="comprar" type="button">Comprar</button>
-                </div>
-            </article>
-
-            <article class="item">
-                <div class="emoji">🛡️</div>
-                <h2>Escudo de Ferro</h2>
-                <p>Melhora a resistência do time para combates demorados.</p>
-                <div class="preco">
-                    <span>60 moedas</span>
-                    <button class="comprar" type="button">Comprar</button>
-                </div>
-            </article>
-
-            <article class="item">
-                <div class="emoji">🌟</div>
-                <h2>Melhoria de Evolução</h2>
-                <p>Libera bônus de status e potencial para o próximo nível.</p>
-                <div class="preco">
-                    <span>120 moedas</span>
-                    <button class="comprar" type="button">Comprar</button>
-                </div>
-            </article>
+            <?php foreach ($itensLoja as $identificador => $preco): ?>
+                <?php $detalhe = $detalhesItens[$identificador]; ?>
+                <article class="item">
+                    <div class="emoji"><?= htmlspecialchars($detalhe['emoji'], ENT_QUOTES, 'UTF-8') ?></div>
+                    <h2><?= htmlspecialchars($detalhe['nome'], ENT_QUOTES, 'UTF-8') ?></h2>
+                    <p><?= htmlspecialchars($detalhe['descricao'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <div class="preco">
+                        <span><?= number_format($preco, 0, ',', '.') ?> moedas</span>
+                        <button class="comprar" type="button" data-item="<?= htmlspecialchars($identificador, ENT_QUOTES, 'UTF-8') ?>">Comprar</button>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </section>
     </div>
 </body>
