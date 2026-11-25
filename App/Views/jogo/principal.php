@@ -56,69 +56,96 @@
         .hotspot {
             --glow-color: var(--primario); /* Cor padrão caso não seja definida */
             position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-decoration: none;
             z-index: 10;
-            pointer-events: none; /* Ignora os cantos vazios fora do clip-path */
-            transition: filter 0.25s ease;
-
-            &:hover,
-            &:focus {
-                filter:
-                    drop-shadow(0 0 6px color-mix(in srgb, var(--glow-color) 75%, white))
-                    drop-shadow(0 0 18px var(--glow-color));
-            }
+            pointer-events: none;  /* Ignora os cantos vazios fora do clip-path */
         }
 
-        /* Camada recortada com o contorno do prédio */
+        .hotspot:hover,
+        .hotspot:focus {
+            z-index: 30;
+        }
+
+        /* Aplica apenas o brilho difuso ao redor do polígono, sem linha dura */
+        .glow-wrapper {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            filter:
+                drop-shadow(0 0 8px var(--glow-color))
+                drop-shadow(0 0 18px var(--glow-color))
+                drop-shadow(0 0 32px var(--glow-color));
+        }
+
+        .hotspot:hover .glow-wrapper,
+        .hotspot:focus .glow-wrapper {
+            opacity: 1;
+        }
+
+        /* Polígono praticamente invisível por dentro (1%) para não tampar a arte do prédio */
         .glow-shape {
             position: absolute;
             inset: 0;
             pointer-events: auto; /* Apenas o polígono recortado recebe hover e clique */
-            background-color: rgba(217, 119, 6, 0.01);
-            transition: background-color 0.25s ease;
+            background-color: color-mix(in srgb, var(--glow-color) 1%, transparent);
         }
 
-        .hotspot:hover .glow-shape,
-        .hotspot:focus .glow-shape {
-            background-color: rgba(255, 255, 255, 0);
-        }
-
-        /* Card de informações que aparece no hover */
+        /* Card semitransparente flutuando ACIMA do prédio */
         .overlay {
-            position: relative;
-            z-index: 2;
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            z-index: 20;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-            transform: translateY(6px);
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             color: #ffffff;
-            padding: 12px 14px;
+            padding: 10px 14px;
             border-radius: 10px;
-            border: 1px solid var(--glow-color);
-            width: 92%;
+            border: 1px solid color-mix(in srgb, var(--glow-color) 75%, white);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+            width: max-content;
+            min-width: 185px;
+            max-width: 240px;
             text-align: center;
-        
-            h2 {
-                color: var(--glow-color);
-                font-size: clamp(0.95rem, 1.25vw, 1.35rem);
-                margin-bottom: 4px;
-            }
-            
-            p {
-                font-size: clamp(0.72rem, 0.85vw, 0.9rem);
-                line-height: 1.3;
-            }
+        }
+
+        .overlay h2 {
+            color: var(--glow-color);
+            font-size: clamp(0.95rem, 1.25vw, 1.35rem);
+            margin-bottom: 4px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+        }
+
+        .overlay p {
+            font-size: clamp(0.75rem, 0.85vw, 0.9rem);
+            line-height: 1.3;
+            color: rgba(255, 255, 255, 0.92);
         }
 
         /* Mostra o card ao passar o mouse ou tocar */
         .hotspot:hover .overlay,
         .hotspot:focus .overlay {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* #ginasio fica perto do topo, então o card abre abaixo dele */
+        #ginasio .overlay {
+            bottom: auto;
+            top: calc(100% + 10px);
+            transform: translateX(-50%) translateY(-6px);
+        }
+
+        #ginasio:hover .overlay,
+        #ginasio:focus .overlay {
+            transform: translateX(-50%) translateY(0);
         }
 
         /* --- POSIÇÕES E CORES DOS PRÉDIOS --- */
