@@ -162,8 +162,8 @@ $detalhesItens = [
         <div class="header">
             <h1>Loja</h1>
             <nav class="menu" aria-label="Menu da loja">
-                <a href="principal.php">Principal</a>
-                <a href="inventario.php">Inventário</a>
+                <a href="PrincipalController.php">Principal</a>
+                <a href="LojaController.php?acao=inventario">Inventário</a>
             </nav>
         </div>
 

@@ -138,10 +138,11 @@
     <main class="page-shell">
         <div class="topbar">
             <h1>Selecionar times</h1>
-            <a class="nav-link" href="../principal.php">Voltar ao menu</a>
+            <a class="nav-link" href="PrincipalController.php">Voltar ao menu</a>
         </div>
 
-        <form action="batalha.php" method="get">
+        <form action="BatalhaController.php" method="get">
+            <input type="hidden" name="acao" value="iniciar">
             <div class="form-grid">
                 <div class="field">
                     <label for="time-jogador">Seu time</label>

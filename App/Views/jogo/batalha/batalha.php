@@ -79,7 +79,7 @@
 <body>
     <main class="arena">
         <!-- Imagem principal da batalha -->
-        <img class="cenario" src="../../imgs/Batalha.png" alt="Arena de batalha BolsoMonstro">
+        <img class="cenario" src="/BolsoMonstro/App/Views/imgs/Batalha.png" alt="Arena de batalha BolsoMonstro">
 
         <!-- Mensagens -->
         <div class="mensagem" id="mensagem" aria-live="polite">Escolha uma ação!</div>
@@ -87,8 +87,8 @@
         <!-- Botões de interação sobre a imagem -->
         <button class="area-botao atacar"   type="button" onclick="atacar()"   aria-label="Atacar"></button>
         <button class="area-botao defender" type="button" onclick="defender()" aria-label="Defender"></button>
-        <a      class="area-botao trocar"   href="selecionar-times.php"        aria-label="Trocar times"></a>
-        <a      class="area-botao voltar"   href="../principal.php"            aria-label="Voltar ao menu"></a>
+        <a      class="area-botao trocar"   href="BatalhaController.php?acao=selecionar" aria-label="Trocar times"></a>
+        <a      class="area-botao voltar"   href="PrincipalController.php" aria-label="Voltar ao menu"></a>
     </main>
 
     <script>

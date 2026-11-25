@@ -148,9 +148,9 @@
             </p>
 
             <div class="acoes">
-                <a class="botao primario" href="criar-usuario.php">Criar usuário</a>
-                <a class="botao secundario" href="login.php">Login</a>
-                <a class="botao terciario" href="../jogo/principal.php">Entrar no jogo</a>
+                <a class="botao primario" href="InicioController.php?acao=criar">Criar usuário</a>
+                <a class="botao secundario" href="InicioController.php?acao=login">Login</a>
+                <a class="botao terciario" href="PrincipalController.php">Entrar no jogo</a>
             </div>
         </header>
 

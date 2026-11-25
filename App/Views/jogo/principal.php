@@ -247,7 +247,7 @@
             --p1: 38.1% 2%;
             --rest:
                 63.41% 1.56%, 79.88% 13.63%, 82.43% 23.51%,
-                87.95% 18.44%, 95.19% 23.63%, 94.95% 34.82%, 89.48% 38%,
+                87.95% 18.44%, 95.19% 23.63%, 94.95% 34.82, 89.48% 38%,
                 98.57% 44.63%, 99.74% 85.84%, 93.31% 86.38%, 89.16% 98.77%,
                 75.72% 99.01%, 70.49% 92.34%, 67.08% 98.85%, 32.86% 98.57%,
                 31.86% 86.82%, 25.38% 86.38%, 23.69% 90.94%, 19% 95.01%,
@@ -285,9 +285,9 @@
 
     <div class="mapa-viewport">
         <div class="mapa-canvas">
-            <img src="../imgs/MapaPrincipal.png" alt="Mapa Principal BolsoMonstro" class="mapa-bg">
+            <img src="/BolsoMonstro/App/Views/imgs/MapaPrincipal.png" alt="Mapa Principal BolsoMonstro" class="mapa-bg">
 
-            <a id="arena" class="hotspot" href="batalha/selecionar-times.php">
+            <a id="arena" class="hotspot" href="BatalhaController.php?acao=selecionar">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -296,7 +296,7 @@
                 </div>
             </a>
 
-            <a id="ginasio" class="hotspot" href="meus-times.php">
+            <a id="ginasio" class="hotspot" href="MeusTimesController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -305,7 +305,7 @@
                 </div>
             </a>
 
-            <a id="criar-times" class="hotspot" href="team-builder.php">
+            <a id="criar-times" class="hotspot" href="TeamBuilderController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -314,7 +314,7 @@
                 </div>
             </a>
 
-            <a id="zoo" class="hotspot" href="monstros.php">
+            <a id="zoo" class="hotspot" href="MonstrosController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -323,7 +323,7 @@
                 </div>
             </a>
 
-            <a id="loja" class="hotspot" href="loja.php">
+            <a id="loja" class="hotspot" href="LojaController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">

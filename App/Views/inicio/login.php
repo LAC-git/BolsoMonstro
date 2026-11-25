@@ -94,15 +94,15 @@
 <body>
     <div class="cartao">
         <h1>Login</h1>
-        <form action="../jogo/principal.php" method="post">
+        <form action="PrincipalController.php" method="post">
             <input type="email" placeholder="E-mail" aria-label="E-mail">
             <input type="password" placeholder="Senha" aria-label="Senha">
             <button type="submit">Entrar</button>
         </form>
 
         <div class="botoesAcesso">
-            <a href="criar-usuario.php">Criar conta</a>
-            <a href="index.php">Início</a>
+            <a href="InicioController.php?acao=criar">Criar conta</a>
+            <a href="InicioController.php?acao=index">Início</a>
         </div>
     </div>
 </body>
