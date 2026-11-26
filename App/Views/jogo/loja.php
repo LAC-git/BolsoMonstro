@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+$saldoMoedas = $_SESSION['saldo_pokedollars']
+    ?? $_SESSION['moedas']
+    ?? $_SESSION['saldo']
+    ?? 0;
+$saldoMoedas = max(0, (int) $saldoMoedas);
+
 require_once __DIR__ . '/../../../config/autoload.php';
 
 $loja = new Loja();
@@ -75,6 +85,32 @@ $detalhesItens = [
             gap: 10px;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .contador-moedas {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 42px;
+            padding: 8px 14px;
+            border: 1px solid #e4c47d;
+            border-radius: 999px;
+            background: #fff8dc;
+            color: #8a5600;
+            font-weight: 800;
+            box-shadow: 0 6px 14px rgba(138, 86, 0, 0.08);
+        }
+
+        .contador-moedas .icone {
+            font-size: 1.15rem;
+        }
+
         .menu a {
             text-decoration: none;
             padding: 10px 14px;
@@ -83,6 +119,32 @@ $detalhesItens = [
             background: var(--painel);
             color: var(--texto);
             font-weight: 700;
+            transition: background 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .menu a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(31, 41, 55, 0.10);
+        }
+
+        .menu .principal {
+            background: var(--primario-suave);
+            border-color: #edc98f;
+            color: #a84f00;
+        }
+
+        .menu .inventario {
+            background: #eaf1ff;
+            border-color: #bdcfee;
+            color: #1d4ed8;
+        }
+
+        .menu .principal:hover {
+            background: #f6ddb8;
+        }
+
+        .menu .inventario:hover {
+            background: #dde8ff;
         }
 
         .grid {
@@ -99,6 +161,19 @@ $detalhesItens = [
             box-shadow: 0 12px 22px rgba(31, 41, 55, 0.05);
             display: flex;
             flex-direction: column;
+            transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+        }
+
+        .item:hover {
+            transform: translateY(-8px);
+            border-color: #e0ad62;
+            background: #fffefb;
+            box-shadow: 0 18px 32px rgba(217, 119, 6, 0.13);
+        }
+
+        .item:focus-within {
+            border-color: #e0ad62;
+            box-shadow: 0 18px 32px rgba(217, 119, 6, 0.13);
         }
 
         .item p {
@@ -155,16 +230,29 @@ $detalhesItens = [
             font-weight: 700;
             cursor: pointer;
         }
+
+        .saldo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primario);
+            margin-left: 16px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Loja</h1>
-            <nav class="menu" aria-label="Menu da loja">
-                <a href="/BolsoMonstro/App/Controllers/PrincipalController.php">Principal</a>
-                <a href="/BolsoMonstro/App/Controllers/LojaController.php?acao=inventario">Inventário</a>
-            </nav>
+            <div class="header-actions">
+                <div class="contador-moedas" aria-label="Saldo atual">
+                    <span class="icone" aria-hidden="true">🪙</span>
+                    <span><?= number_format($saldoMoedas, 0, ',', '.') ?> moedas</span>
+                </div>
+                <nav class="menu" aria-label="Menu da loja">
+                    <a class="principal" href="/BolsoMonstro/App/Controllers/PrincipalController.php">Principal</a>
+                    <a class="inventario" href="/BolsoMonstro/App/Controllers/LojaController.php?acao=inventario">Inventário</a>
+                </nav>
+            </div>
         </div>
 
         <section class="grid">
