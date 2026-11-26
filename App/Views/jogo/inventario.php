@@ -29,7 +29,8 @@ $itens = $loja->get_precos();
         <div class="header">
             <h1>Inventário</h1>
             <nav class="menu" aria-label="Menu do inventário">
-                <a href="loja.php">Voltar à loja</a>
+                <a href="/BolsoMonstro/App/Controllers/LojaController.php">Loja</a>
+                <a href="/BolsoMonstro/App/Controllers/PrincipalController.php">Principal</a>
             </nav>
         </div>
 

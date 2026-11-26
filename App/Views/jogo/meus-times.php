@@ -131,10 +131,9 @@
         <div class="topbar">
             <h1>Meus times</h1>
             <nav class="nav" aria-label="Navegação de times">
-                <a href="principal.php">Principal</a>
-                <a href="team-builder.php">Criar time</a>
-                <a href="batalha/selecionar-times.php">Batalha</a>
-                <a href="loja.php">Loja</a>
+                <a href="/BolsoMonstro/App/Controllers/PrincipalController.php">Principal</a>
+                <a href="/BolsoMonstro/App/Controllers/TeamBuilderController.php">Criar time</a>
+                <a href="/BolsoMonstro/App/Controllers/BatalhaController.php?acao=selecionar">Batalha</a>
             </nav>
         </div>
 
@@ -143,7 +142,7 @@
                 <h2>Nenhum time cadastrado</h2>
                 <p>Crie seu primeiro time para começar a jornada.</p>
                 <div class="actions">
-                    <a class="button" href="team-builder.php">Criar time</a>
+                    <a class="button" href="/BolsoMonstro/App/Controllers/TeamBuilderController.php">Criar time</a>
                 </div>
             </article>
         </section>

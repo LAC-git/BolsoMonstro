@@ -285,9 +285,9 @@
 
     <div class="mapa-viewport">
         <div class="mapa-canvas">
-            <img src="../imgs/MapaPrincipal.png" alt="Mapa Principal BolsoMonstro" class="mapa-bg">
+            <img src="/BolsoMonstro/App/Views/imgs/MapaPrincipal.png" alt="Mapa Principal BolsoMonstro" class="mapa-bg">
 
-            <a id="arena" class="hotspot" href="batalha/selecionar-times.php">
+            <a id="arena" class="hotspot" href="/BolsoMonstro/App/Controllers/BatalhaController.php?acao=selecionar">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -296,7 +296,7 @@
                 </div>
             </a>
 
-            <a id="ginasio" class="hotspot" href="meus-times.php">
+            <a id="ginasio" class="hotspot" href="/BolsoMonstro/App/Controllers/MeusTimesController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -305,7 +305,7 @@
                 </div>
             </a>
 
-            <a id="criar-times" class="hotspot" href="team-builder.php">
+            <a id="criar-times" class="hotspot" href="/BolsoMonstro/App/Controllers/TeamBuilderController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -314,7 +314,7 @@
                 </div>
             </a>
 
-            <a id="zoo" class="hotspot" href="monstros.php">
+            <a id="zoo" class="hotspot" href="/BolsoMonstro/App/Controllers/MonstrosController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">
@@ -323,7 +323,7 @@
                 </div>
             </a>
 
-            <a id="loja" class="hotspot" href="loja.php">
+            <a id="loja" class="hotspot" href="/BolsoMonstro/App/Controllers/LojaController.php">
                 <div class="glow-wrapper"><div class="glow-source"></div></div>
                 <div class="hit-area"></div>
                 <div class="overlay">

@@ -138,10 +138,11 @@
     <main class="page-shell">
         <div class="topbar">
             <h1>Selecionar times</h1>
-            <a class="nav-link" href="../principal.php">Voltar ao menu</a>
+            <a class="nav-link" href="/BolsoMonstro/App/Controllers/PrincipalController.php">Voltar ao menu</a>
         </div>
 
-        <form action="batalha.php" method="get">
+        <form action="/BolsoMonstro/App/Controllers/BatalhaController.php" method="get">
+            <input type="hidden" name="acao" value="iniciar">
             <div class="form-grid">
                 <div class="field">
                     <label for="time-jogador">Seu time</label>
@@ -170,7 +171,6 @@
 
             <div class="actions">
                 <button class="button" type="submit">Iniciar batalha</button>
-                <a class="secondary-button" href="../meus-times.php">Meus times</a>
             </div>
         </form>
     </main>

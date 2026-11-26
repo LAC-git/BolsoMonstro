@@ -367,10 +367,10 @@ if (!function_exists('tipo_emoji')) {
     <main class="page-shell">
         <div class="topbar">
             <h1>Criar time</h1>
-            <a class="nav-link" href="principal.php">Voltar ao menu</a>
+            <a class="nav-link" href="/BolsoMonstro/App/Controllers/PrincipalController.php">Voltar ao menu</a>
         </div>
 
-        <form id="form-time" action="meus-times.php" method="post">
+        <form id="form-time" action="/BolsoMonstro/App/Controllers/MeusTimesController.php" method="post">
             <!-- 1) Informações do time -->
             <section class="section-card">
                 <h2>1. Informações do time</h2>
@@ -450,8 +450,7 @@ if (!function_exists('tipo_emoji')) {
             </section>
 
             <div class="footer-actions">
-                <a class="secondary-button" href="meus-times.php">Ver meus times</a>
-                <a class="danger-button" href="batalha/selecionar-times.php">Ir para batalha</a>
+                <a class="secondary-button" href="/BolsoMonstro/App/Controllers/MeusTimesController.php">Ver meus times</a>
                 <button class="button" type="submit">Salvar time</button>
             </div>
         </form>
