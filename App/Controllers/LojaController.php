@@ -2,32 +2,73 @@
 
 require_once __DIR__ . '/../../config/autoload.php';
 
-$acao = $_GET['acao'] ?? 'loja';
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
-if ($acao === 'inventario') {
-    require __DIR__ . '/../Views/jogo/inventario.php';
+function responderJson(array $dados, int $status = 200): void {
+    http_response_code($status);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($dados, JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$acaoPost = $_POST['acao'] ?? null;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $acaoPost === 'comprar') {
-    header('Content-Type: application/json; charset=utf-8');
-
+function processarCompra(): void {
     $item = trim((string) ($_POST['item'] ?? ''));
     $quantidade = (int) ($_POST['quantidade'] ?? 0);
     $preco = (int) ($_POST['preco'] ?? 0);
 
-    // TODO: implementar a verificação no banco de dados e descontar o item e o saldo do jogador.
+    // TODO: validar o item, a quantidade e o preço no banco de dados.
+    // TODO: consultar o saldo real do jogador e verificar se existe saldo suficiente.
+    // TODO: descontar o saldo e adicionar o item ao inventário em uma transação.
 
-    echo json_encode([
+    responderJson([
         'status' => 'pendente',
         'mensagem' => 'Compra enviada para processamento.',
         'item' => $item,
         'quantidade' => $quantidade,
         'preco' => $preco,
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
+}
+
+function consultarSaldo(): void {
+    // TODO: consultar o saldo real do jogador no banco usando o identificador da sessão.
+    $saldo = $_SESSION['saldo_pokedollars']
+        ?? $_SESSION['moedas']
+        ?? $_SESSION['saldo']
+        ?? 0;
+
+    responderJson([
+        'saldo' => max(0, (int) $saldo),
+    ]);
+}
+
+function mostrarInventario(): void {
+    require __DIR__ . '/../Views/jogo/inventario.php';
     exit;
 }
 
-require __DIR__ . '/../Views/jogo/loja.php';
+function mostrarLoja(): void {
+    require __DIR__ . '/../Views/jogo/loja.php';
+    exit;
+}
+
+$acao = $_GET['acao'] ?? 'loja';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['acao'] ?? null) === 'comprar') {
+    processarCompra();
+}
+
+switch ($acao) {
+    case 'inventario':
+        mostrarInventario();
+        break;
+
+    case 'saldo':
+        consultarSaldo();
+        break;
+
+    default:
+        mostrarLoja();
+        break;
+}

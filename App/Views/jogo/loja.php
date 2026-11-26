@@ -347,6 +347,38 @@ $detalhesItens = [
                 }
 
                 mostrarMensagemCompra(resultado.mensagem || 'Compra enviada para processamento.', 'sucesso');
+                await atualizarSaldoJogador();
+            } catch (erro) {
+                mostrarMensagemCompra(erro.message, 'erro');
+            }
+        }
+
+        // Função para atualizar o saldo do jogador
+        async function atualizarSaldoJogador() {
+            try {
+                const resposta = await fetch('/BolsoMonstro/App/Controllers/LojaController.php?acao=saldo', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const resultado = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(resultado.mensagem || 'Não foi possível consultar o saldo.');
+                }
+
+                const saldo = Number(resultado.saldo);
+                if (!Number.isFinite(saldo) || saldo < 0) {
+                    throw new Error('Saldo retornado pelo servidor é inválido.');
+                }
+
+                const contador = document.getElementById('contador-moedas');
+                const textoSaldo = document.getElementById('saldo-moedas');
+
+                contador.dataset.saldo = String(saldo);
+                textoSaldo.textContent = `${saldo.toLocaleString('pt-BR')} moedas`;
             } catch (erro) {
                 mostrarMensagemCompra(erro.message, 'erro');
             }
