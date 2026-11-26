@@ -4,14 +4,18 @@ require_once __DIR__ . '/../../config/autoload.php';
 
 $acao = $_GET['acao'] ?? 'index';
 
-$paginas = [
-    'index' => '/../Views/inicio/index.php',
-    'login' => '/../Views/inicio/login.php',
-    'criar' => '/../Views/inicio/criar-usuario.php',
-];
+switch ($acao) {
+    case 'login':
+        header('Location: /BolsoMonstro/App/Views/inicio/login.php');
+        break;
 
-if (!isset($paginas[$acao])) {
-    $acao = 'index';
+    case 'criar':
+        header('Location: /BolsoMonstro/App/Views/inicio/criar-usuario.php');
+        break;
+
+    default:
+        header('Location: /BolsoMonstro/App/Views/inicio/index.php');
+        break;
 }
 
-require __DIR__ . $paginas[$acao];
+exit;

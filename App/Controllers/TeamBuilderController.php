@@ -2,4 +2,5 @@
 
 require_once __DIR__ . '/../../config/autoload.php';
 
-require __DIR__ . '/../Views/jogo/team-builder.php';
+header('Location: /BolsoMonstro/App/Views/jogo/team-builder.php');
+exit;

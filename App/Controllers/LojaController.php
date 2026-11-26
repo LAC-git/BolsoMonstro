@@ -44,12 +44,12 @@ function consultarSaldo(): void {
 }
 
 function mostrarInventario(): void {
-    require __DIR__ . '/../Views/jogo/inventario.php';
+    header('Location: /BolsoMonstro/App/Views/jogo/inventario.php');
     exit;
 }
 
 function mostrarLoja(): void {
-    require __DIR__ . '/../Views/jogo/loja.php';
+    header('Location: /BolsoMonstro/App/Views/jogo/loja.php');
     exit;
 }
 
