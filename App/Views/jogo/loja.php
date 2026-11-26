@@ -231,11 +231,36 @@ $detalhesItens = [
             cursor: pointer;
         }
 
+        .comprar:hover {
+            background: #f6ddb8;
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.12);
+        }
+
+        .comprar:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+        }
+
         .saldo {
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--primario);
             margin-left: 16px;
+        }
+
+        .mensagem-compra {
+            min-height: 24px;
+            margin: 0 0 18px;
+            text-align: right;
+            color: var(--mutado);
+        }
+
+        .mensagem-compra.erro {
+            color: #b42318;
+        }
+
+        .mensagem-compra.sucesso {
+            color: var(--verde);
         }
     </style>
 </head>
@@ -244,9 +269,9 @@ $detalhesItens = [
         <div class="header">
             <h1>Loja</h1>
             <div class="header-actions">
-                <div class="contador-moedas" aria-label="Saldo atual">
+                <div class="contador-moedas" id="contador-moedas" data-saldo="<?= (int) $saldoMoedas ?>" aria-label="Saldo atual">
                     <span class="icone" aria-hidden="true">🪙</span>
-                    <span><?= number_format($saldoMoedas, 0, ',', '.') ?> moedas</span>
+                    <span id="saldo-moedas"><?= number_format($saldoMoedas, 0, ',', '.') ?> moedas</span>
                 </div>
                 <nav class="menu" aria-label="Menu da loja">
                     <a class="principal" href="/BolsoMonstro/App/Controllers/PrincipalController.php">Principal</a>
@@ -254,6 +279,8 @@ $detalhesItens = [
                 </nav>
             </div>
         </div>
+
+        <p class="mensagem-compra" id="mensagem-compra" aria-live="polite"></p>
 
         <section class="grid">
             <?php foreach ($itensLoja as $identificador => $preco): ?>
@@ -264,11 +291,66 @@ $detalhesItens = [
                     <p><?= htmlspecialchars($detalhe['descricao'], ENT_QUOTES, 'UTF-8') ?></p>
                     <div class="preco">
                         <span><?= number_format($preco, 0, ',', '.') ?> moedas</span>
-                        <button class="comprar" type="button" data-item="<?= htmlspecialchars($identificador, ENT_QUOTES, 'UTF-8') ?>">Comprar</button>
+                        <button class="comprar" type="button" data-item="<?= htmlspecialchars($identificador, ENT_QUOTES, 'UTF-8') ?>" data-preco="<?= (int) $preco ?>" onclick="verificarCompraNoCliente(this)">Comprar</button>
                     </div>
                 </article>
             <?php endforeach; ?>
         </section>
     </div>
+    <script>
+        function mostrarMensagemCompra(mensagem, tipo = '') {
+            const elemento = document.getElementById('mensagem-compra');
+            elemento.textContent = mensagem;
+            elemento.className = `mensagem-compra ${tipo}`.trim();
+        }
+
+        // Verifica no lado do cliente se o saldo exibido é suficiente.
+        function verificarCompraNoCliente(botao) {
+            const contador = document.getElementById('contador-moedas');
+            const saldo = Number(contador?.dataset.saldo || 0);
+            const preco = Number(botao.dataset.preco);
+
+            if (!Number.isFinite(preco) || preco <= 0) {
+                mostrarMensagemCompra('Preço do item inválido.', 'erro');
+                return;
+            }
+
+            if (saldo < preco) {
+                mostrarMensagemCompra('Saldo insuficiente para comprar este item.', 'erro');
+                return;
+            }
+
+            tentarEnviarCompraAoBanco(botao.dataset.item, preco);
+        }
+
+        // Tenta enviar a compra ao servidor; a validação no banco fica pendente.
+        async function tentarEnviarCompraAoBanco(item, preco) {
+            try {
+                const resposta = await fetch('/BolsoMonstro/App/Controllers/LojaController.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept': 'application/json'
+                    },
+                    body: new URLSearchParams({
+                        acao: 'comprar',
+                        item: item,
+                        quantidade: '1',
+                        preco: String(preco)
+                    })
+                });
+
+                const resultado = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(resultado.mensagem || 'Não foi possível enviar a compra.');
+                }
+
+                mostrarMensagemCompra(resultado.mensagem || 'Compra enviada para processamento.', 'sucesso');
+            } catch (erro) {
+                mostrarMensagemCompra(erro.message, 'erro');
+            }
+        }
+    </script>
 </body>
 </html>
